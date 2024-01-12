@@ -278,11 +278,6 @@ header {
   /* font-size: 14px; */
 }
 
-#help-container nav div {
-  /* width: 33%; */
-  /* border: 1px solid red; */
-}
-
 .likes_box {
   display: flex;
   justify-content: center;
