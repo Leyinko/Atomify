@@ -6,10 +6,5 @@ import './src/pages/header/header';
 import './src/router/router';
 import { router } from './src/router/router';
 
-window.addEventListener('load', () => {
-  let user = localStorage.getItem('users');
-  if (!user) {
-    history.pushState(null, null, '/login');
-    router();
-  }
-});
+history.pushState(null, null, '/login');
+router();
