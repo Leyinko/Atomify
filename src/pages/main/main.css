@@ -1,0 +1,70 @@
+main {
+  position: relative;
+  margin: 0 auto;
+  width: 85%;
+  height: 90vh;
+  padding: 0px 45px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6.25rem;
+  transition: height 0.2s ease-in-out;
+}
+
+#playing_container {
+  position: absolute;
+  right: var(--offset-main);
+  max-width: 330px;
+  min-width: 200px;
+  height: 55%;
+  min-height: 200px;
+  max-height: 400px;
+  color: white;
+  border-radius: 5px;
+  overflow-x: hidden;
+  display: none;
+  transition: background-color 4s ease-in-out, all 0.5s ease-in-out;
+  animation: pop-playing-card 1s alternate ease-in-out infinite;
+}
+
+#playing_container.show-playing-card {
+  right: 0px;
+  display: block;
+  animation: none;
+}
+
+.loading_logo {
+  position: absolute;
+  top: calc(50% - 6.25rem);
+  left: calc(50% - 6.875rem);
+  margin: 0 auto;
+  max-width: 10%;
+  animation: loading 15s infinite linear;
+  pointer-events: none;
+  opacity: 0.1;
+  display: none;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pop-playing-card {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(3px);
+  }
+}

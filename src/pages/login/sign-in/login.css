@@ -1,0 +1,80 @@
+#login {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 4.5rem;
+  background-color: black;
+  color: white;
+  z-index: 20;
+  user-select: none;
+}
+
+#login img {
+  width: 230px;
+  animation: signup-atom-pop 2s forwards ease-in-out;
+  -webkit-user-drag: none;
+}
+
+#login_container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5125rem;
+  opacity: 0;
+  animation: login-atom-pop 3s forwards ease-in-out;
+}
+
+#login_container label {
+  font-size: 0.7rem;
+}
+
+#login_container input {
+  width: 250px;
+  padding: 0px 15px;
+  margin-bottom: 10px;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid rgba(122, 122, 122, 0.596);
+  background-color: rgba(49, 48, 48, 0.514);
+  border-radius: 5px;
+  color: var(--font-input-search);
+  font-family: 'GothamMedium';
+  font-size: 0.8rem;
+}
+
+#login_container input::selection {
+  background-color: var(--selection-input-search);
+}
+
+#login_container input:focus {
+  outline: none;
+  caret-color: white;
+}
+
+#login_container button {
+  width: 250px;
+  margin: 40px 0px;
+  height: 38px;
+  border-radius: 20px;
+  background-color: var(--green-spotify);
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#login_container span {
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--font-input-search);
+}
+
+#login_container span a {
+  color: white;
+}

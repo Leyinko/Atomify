@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'GothamMedium';
+  src: url('public/assets/font/Gotham-Light.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  /* Colors */
+  --green-spotify: #1db954;
+  --green-valid-field: #1db95489;
+  --red-valid-field: #e93838af;
+  --black-card: #181818;
+  --user-hover: #272727;
+  --background-input-search: #8080804b;
+  --selection-input-search: #8080804b;
+  --font-input-search: #ffffff9a;
+  /* Measures */
+  --offset-main: -430px;
+  /* User BG */
+  --user-background: black;
+  --help-background: #181818de;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(0, 0, 0);
+  font-family: 'GothamMedium';
+  overflow: hidden;
+}
+
+*::-webkit-scrollbar,
+*::-webkit-scrollbar-thumb {
+  width: 0px;
+  height: 0px;
+  background-color: transparent;
+}

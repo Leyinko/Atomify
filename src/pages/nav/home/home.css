@@ -1,0 +1,356 @@
+article#home {
+  position: relative;
+  width: 100%;
+  /* height: 85%; */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: width 0.8s;
+  user-select: none;
+}
+
+article#home.shrink_result {
+  width: 75%;
+}
+
+.user-information {
+  position: relative;
+  /* margin-top: 50px; */
+  margin: 0 auto;
+  padding: 30px;
+  width: 60%;
+  /* height: 20%; */
+}
+
+/* Profile Picture */
+
+#picture-container {
+  position: absolute;
+  left: -135px;
+  top: 0px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+}
+
+.profile-picture {
+  position: relative;
+  width: 100%;
+  object-fit: cover;
+  filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, 0.301));
+  transition: all 0.1s ease-in-out;
+}
+
+#picture-container:hover {
+  background: url('https://res.cloudinary.com/drft9abh4/image/upload/v1704820760/change-svgrepo-com_nhos8n.svg')
+    center/30% no-repeat;
+}
+
+#picture-container:hover .profile-picture {
+  /* opacity: 0.5; */
+  z-index: -333333;
+  filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, 0.301)) brightness(0.3);
+  transition: all 0.1s ease-in-out;
+}
+
+#profile-pictures-selection {
+  position: absolute;
+  top: -60px;
+  left: -5px;
+  /* width: 100px; */
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #313030a9;
+  border-radius: 5px;
+  visibility: hidden;
+  z-index: 10;
+  opacity: 0;
+  border-bottom-left-radius: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+#profile-pictures-selection.selection-active {
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s ease-in-out;
+}
+
+.profile-picture-miniature {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.profile-picture-miniature:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.miniature-selected {
+  border: 2px solid var(--green-spotify);
+}
+
+.confirm-picture {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  width: 20px;
+}
+
+.confirm-picture:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+/* User Info */
+
+.user-information > span {
+  /* margin-left: 14px; */
+  font-size: 10px;
+}
+
+.user-information > h1 {
+  position: relative;
+  width: fit-content;
+  margin-left: 10px;
+  font-size: 60px;
+}
+
+.user-information > p {
+  margin-top: 20px;
+  font-size: 12px;
+}
+
+.current-date {
+  position: absolute;
+  top: -100px;
+  right: 20px;
+  font-size: 10px;
+}
+
+.playlist-info {
+  width: fit-content;
+  margin-top: 10px;
+  padding: 0px 15px;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0.5rem;
+  /* border: 1px solid red; */
+}
+
+.playlist-info span {
+  font-size: 11px;
+}
+
+.playlist-info img {
+  position: absolute;
+  margin-left: 6px;
+  width: 20px;
+}
+
+#play_liked_playlist {
+  position: absolute;
+  top: 0px;
+  right: -100px;
+  padding: 15px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--green-spotify);
+  /* border: 1px solid rgba(0, 0, 0, 0.185); */
+  box-shadow: 2px 1px 2px 0px rgba(0, 0, 0, 0.589);
+}
+
+#play_liked_playlist:hover {
+  transform: scale(1.05);
+  box-shadow: 2px 1px 6px 0px rgba(0, 0, 0, 0.589);
+
+  cursor: pointer;
+}
+
+/* Likes */
+
+#user-songs-section {
+  margin: 0 auto;
+  height: calc(80% - 3.125rem);
+  display: flex;
+  justify-content: space-around;
+  gap: 42px;
+}
+
+ul {
+  position: relative;
+  padding: 15px 0px;
+  margin-top: 35px;
+  width: 460px;
+  height: 350px;
+  list-style: none;
+  overflow: scroll;
+  border-radius: 15px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  background-color: var(--black-card);
+  /* background-color: rgba(0, 0, 0, 0.466); */
+}
+
+ul::-webkit-scrollbar {
+  width: 10px;
+  color: rgba(253, 253, 253, 0.171);
+}
+
+ul::-webkit-scrollbar-thumb {
+  width: 0px;
+  height: 0px;
+  background-color: rgba(247, 247, 247, 0.24);
+}
+
+.empty-likes {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 13px;
+  opacity: 0.3;
+}
+
+.liked_song_li {
+  position: relative;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 5px 20px;
+}
+
+.liked_song_li:hover {
+  background-color: var(--user-background);
+  cursor: pointer;
+}
+
+.liked_song_li:hover img:last-child {
+  display: block;
+  opacity: 0.5;
+}
+
+.liked_song_li img:first-child {
+  height: 100%;
+  margin-right: 20px;
+  object-fit: cover;
+}
+
+.liked_song_li img:last-child {
+  position: absolute;
+  right: 35px;
+  width: 15px;
+  display: none;
+  cursor: pointer;
+}
+
+.liked_song_li img:last-child:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.liked_song_li h4 {
+  width: 180px;
+  margin-right: 30px;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.liked_song_li span {
+  font-size: 10px;
+  width: 110px;
+}
+
+/* Daily */
+
+.daily-track {
+  margin-top: 35px;
+  width: 260px;
+  height: 350px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  background-color: var(--black-card);
+}
+
+.daily-track:hover {
+  cursor: pointer;
+  background-color: var(--user-background);
+}
+
+.daily-track img {
+  width: 180px;
+  margin-bottom: 50px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.288);
+  filter: drop-shadow(5px 5px 6px rgba(0, 0, 0, 0.473));
+  pointer-events: none;
+}
+
+.daily-track h3 {
+  margin-bottom: 10px;
+  margin-left: 10px;
+  font-size: 14px;
+  align-self: flex-start;
+  pointer-events: none;
+}
+
+.daily-track span {
+  padding-top: 4px;
+  margin-left: 10px;
+  align-self: flex-start;
+  opacity: 0.7;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+/* Recommendations */
+
+#recommendations-list {
+  position: relative;
+  margin-top: 32px;
+  width: 360px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.recommendations_card {
+  position: relative;
+  /* display: inline-block; */
+  width: 150px;
+  height: 150px;
+  margin: 5px 6px;
+  padding: 10px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  background-color: var(--black-card);
+  border-radius: 10px;
+  user-select: none;
+}
+
+.recommendations_card:hover {
+  transform: scale(1.03);
+  background-color: var(--user-background);
+}
+
+/* Flag Category */
+
+#user-category {
+  position: absolute;
+  right: -35px;
+  top: 5px;
+  width: 40px;
+  transform: rotate(90deg);
+  opacity: 0.6;
+}

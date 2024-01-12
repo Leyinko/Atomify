@@ -1,0 +1,116 @@
+.playing_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  transition: all 0.3s ease-in-out;
+  user-select: none;
+}
+
+.playing_card > img {
+  min-width: 60%;
+  max-width: 70%;
+  max-height: 100%;
+  filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, 0.301));
+  pointer-events: none;
+}
+
+.playing_card_info {
+  text-align: center;
+  margin: 15px;
+}
+
+.playing_card_info h4 {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.playing_card_info span {
+  font-size: 11px;
+}
+
+#playing_card_ctrls {
+  margin-top: 5px;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+
+#playing_card_ctrls img {
+  width: 20px;
+}
+
+#playing_card_ctrls img:nth-child(3) {
+  padding: 1px;
+}
+
+#playing_card_ctrls img:hover {
+  opacity: 1;
+  /* transform: scale(1.1); */
+  cursor: pointer;
+}
+
+.like_active {
+  content: url('public/assets/icons/player/like-active.png');
+}
+
+.hide-playing-card-toggle {
+  position: absolute;
+  left: 0px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 10px;
+  height: 40%;
+  background-color: rgba(26, 24, 24, 0.384);
+  transition: all 0.1s ease-in-out;
+}
+
+.hide-playing-card-toggle:hover {
+  background-color: rgba(26, 24, 24, 0.658);
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+.lyrics-container {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 20px 40px;
+  width: 100%;
+  height: 79%;
+  overflow-x: hidden;
+  opacity: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.541);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #181818;
+}
+
+.lyrics-on {
+  opacity: 1;
+}
+
+.lyrics-container span {
+  font-size: 0.7rem;
+  line-height: 2.2rem;
+  font-weight: 100;
+}
+
+/* TODO : WEBKIT FOR ALL BROWSERS */
+
+.lyrics-container::-webkit-scrollbar {
+  width: 10px;
+  color: rgba(253, 253, 253, 0.171);
+}
+
+.lyrics-container::-webkit-scrollbar-thumb {
+  width: 0px;
+  height: 0px;
+  background-color: rgba(247, 247, 247, 0.24);
+}
