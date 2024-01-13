@@ -11,7 +11,7 @@ import {
 } from '../../src/pages/nav/home/home';
 
 // DDBB
-export const DDBB = '/playlist_explorer.json';
+export const DDBB = 'public/api/playlist_explorer.json';
 
 // > Play Selected Song
 
