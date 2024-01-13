@@ -21,7 +21,12 @@ export const fetchTrackToPlay = async (num) => {
   // Element
   const audio$$ = document.querySelector('#audio');
   try {
-    let response = await fetch(DDBB);
+    let response = await fetch(DDBB, {
+      headers: {
+        accept: 'application/json',
+        'User-agent': 'learning app',
+      },
+    });
     if (!response.ok) {
       throw new Error(`Local fetching error: ${response.status}`);
     }
@@ -69,7 +74,12 @@ export const fetchSongsBySearch = async (search) => {
     // Loading
     loading_logo$$.style.display = 'block';
     //
-    let response = await fetch(DDBB);
+    let response = await fetch(DDBB, {
+      headers: {
+        accept: 'application/json',
+        'User-agent': 'learning app',
+      },
+    });
     if (!response.ok) {
       throw new Error('Error accessing DDBB');
     }
@@ -97,7 +107,12 @@ export const fetchSingularCategoryPreview = async () => {
   let singularClass = [];
   let count = 0;
   try {
-    let response = await fetch(DDBB);
+    let response = await fetch(DDBB, {
+      headers: {
+        accept: 'application/json',
+        'User-agent': 'learning app',
+      },
+    });
     if (!response.ok) {
       throw new Error(`Error accessing DDBB, ${response.status}`);
     }
@@ -131,7 +146,12 @@ export const fetchLyricsPlayingSong = async (id) => {
   let lyrics_container$$ = document.querySelector('.lyrics-container');
   let lyrics_ctrl$$ = document.querySelector('#playing_card_ctrls [alt*="lyrics"]');
   try {
-    let response = await fetch(DDBB);
+    let response = await fetch(DDBB, {
+      headers: {
+        accept: 'application/json',
+        'User-agent': 'learning app',
+      },
+    });
     if (!response.ok) {
       throw new Error('Error accessing DDBB');
     }
@@ -171,7 +191,12 @@ export const fetchLikedSongsList = async () => {
   const user = getActiveUserData();
   try {
     //
-    let response = await fetch(DDBB);
+    let response = await fetch(DDBB, {
+      headers: {
+        accept: 'application/json',
+        'User-agent': 'learning app',
+      },
+    });
     if (!response.ok) {
       throw new Error('Error accessing DDBB');
     }
@@ -194,7 +219,12 @@ export const fetchDailySong = async () => {
   const user = getActiveUserData();
   try {
     //
-    let response = await fetch(DDBB);
+    let response = await fetch(DDBB, {
+      headers: {
+        accept: 'application/json',
+        'User-agent': 'learning app',
+      },
+    });
     if (!response.ok) {
       throw new Error('Error accessing DDBB');
     }
@@ -213,7 +243,12 @@ export const fetchRecommendationsIDS = async () => {
   const user = getActiveUserData();
   try {
     //
-    let response = await fetch(DDBB);
+    let response = await fetch(DDBB, {
+      headers: {
+        accept: 'application/json',
+        'User-agent': 'learning app',
+      },
+    });
     if (!response.ok) {
       throw new Error('Error accessing DDBB');
     }
@@ -235,7 +270,12 @@ export const fetchRecommendationsSongs = async () => {
   const user_recommendationsLS = getActiveUserData().recommendations || [];
   try {
     //
-    let response = await fetch(DDBB);
+    let response = await fetch(DDBB, {
+      headers: {
+        accept: 'application/json',
+        'User-agent': 'learning app',
+      },
+    });
     if (!response.ok) {
       throw new Error('Error accessing DDBB');
     }
