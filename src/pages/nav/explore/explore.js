@@ -1,4 +1,4 @@
-import { fetchSongsBySearch } from '../../../api/fetch';
+import { fetchSongsBySearch } from '../../../../public/api/fetch.js';
 import { getActiveUserData } from '../../../data/local-storage-mock';
 
 export const Explore = () => {

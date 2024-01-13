@@ -1,5 +1,5 @@
 import { MAIN_ELEMENT$$ } from '../main/main';
-import { fetchSongsBySearch } from '../../api/fetch';
+import { fetchSongsBySearch } from '../../../public/api/fetch.js';
 import { config_panel_icons, general_icons, navigation_icons, search_icons } from '../../../public/assets_constants';
 import './header.css';
 import { router } from '../../router/router';

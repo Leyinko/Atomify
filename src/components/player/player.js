@@ -1,9 +1,9 @@
 import { MAIN_ELEMENT$$ } from '../../pages/main/main';
-import { fetchTrackToPlay, maxLength } from '../../api/fetch';
+import { fetchTrackToPlay, maxLength } from '../../../public/api/fetch.js';
 import { cover_sizes, player_icons, track_info_icon } from '../../../public/assets_constants';
 import { countGenreSeconds, getActiveUserData, setUserData } from '../../data/local-storage-mock';
-import './player.css';
 import { getIndexOfTrackInLikeQueue, playMusicQueue } from '../../pages/nav/home/home';
+import './player.css';
 
 // > Footer insertion (HTML)
 

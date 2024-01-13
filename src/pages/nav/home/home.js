@@ -4,7 +4,7 @@ import {
   fetchRecommendationsIDS,
   fetchRecommendationsSongs,
   fetchTrackToPlay,
-} from '../../../api/fetch';
+} from '../../../../public/api/fetch.js';
 import { deleteLikeTrack, getActiveUserData, setUserData } from '../../../data/local-storage-mock';
 import { getLikedQueueSongs, getRandomTrackID, likedQueueIDs, popPlayer } from '../../../components/player/player';
 import {

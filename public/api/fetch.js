@@ -1,14 +1,14 @@
-import { createCardOnSearch } from '../pages/nav/search/search';
-import { updatePlayerInfo } from '../components/player/player';
-import { playing_card$$ } from '../components/cards/playing-card/playing-card';
-import { cover_sizes } from '../../public/assets_constants';
-import { getActiveUserData, setRecommendations } from '../data/local-storage-mock';
+import { createCardOnSearch } from '../../src/pages/nav/search/search';
+import { updatePlayerInfo } from '../../src/components/player/player';
+import { playing_card$$ } from '../../src/components/cards/playing-card/playing-card';
+import { cover_sizes } from '../assets_constants';
+import { getActiveUserData, setRecommendations } from '../../src/data/local-storage-mock';
 import {
   generateDailyTrack,
   generateRecommendationsSongs$$,
   likedSongList,
   noLikedSongsMessage$$,
-} from '../pages/nav/home/home';
+} from '../../src/pages/nav/home/home';
 
 // DDBB
 export const DDBB = '/playlist_explorer.json';

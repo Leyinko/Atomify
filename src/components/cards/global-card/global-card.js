@@ -1,4 +1,4 @@
-import { fetchTrackToPlay } from '../../../api/fetch';
+import { fetchTrackToPlay } from '../../../../public/api/fetch';
 import { checkIfLiked, popPlayingCard, responsivePlayingDistance } from '../playing-card/playing-card';
 import { cards_icons } from '../../../../public/assets_constants';
 import { popPlayer } from '../../player/player';
