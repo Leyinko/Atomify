@@ -50,7 +50,7 @@ window.addEventListener('load', keepAppRouterActive);
 
 function keepAppRouterActive() {
   let getUsers = JSON.parse(localStorage.getItem('users'));
-  let isOneUserActive = getUsers.some((user) => user.status === 'online');
+  let isOneUserActive = getUsers ? getUsers.some((user) => user.status === 'online') : null;
   //
   if (!isOneUserActive) {
     history.pushState(null, null, '/login');
