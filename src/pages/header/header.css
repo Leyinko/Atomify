@@ -6,7 +6,7 @@ header {
   user-select: none;
   transition: all 0.6s ease-in-out;
   z-index: 10;
-  /* visibility: hidden; */
+  visibility: hidden;
 }
 
 .header-container {
@@ -253,7 +253,7 @@ header {
 }
 
 #help-container p {
-  font-size: 12px;
+  font-size: 11px;
   line-height: 16px;
   font-weight: 200;
   opacity: 0.8;
@@ -273,9 +273,7 @@ header {
 
 #help-container nav p {
   text-align: center;
-  /* line-height: 18px; */
-
-  /* font-size: 14px; */
+  padding: 15px 40px;
 }
 
 .likes_box {
@@ -291,14 +289,7 @@ header {
   background-color: var(--black-card);
 }
 
-.likes_box p {
-  /* width: 100px; */
-  padding: 15px 40px;
-  /* border: 1px solid red; */
-}
-
 .daily_box {
-  /* margin-top: 35px; */
   width: 260px;
   height: 350px;
   padding: 30px;

@@ -30,7 +30,7 @@ const header_template = `
 HEADER_ELEMENT$$.innerHTML = header_template;
 document.querySelector('#app').insertBefore(HEADER_ELEMENT$$, MAIN_ELEMENT$$);
 
-// Start Handlers
+// Elements Handlers
 window.addEventListener('load', headerElementsHandlers);
 
 // > DOM Elements & Functional Data
@@ -223,23 +223,21 @@ const text_information = {
   Reflects the predominant genre of your playlist, giving insight into the overarching theme of your musical preferences.`,
   likes: `Your Likes List features your favorite songs.
 
-  Press the play button to start from the beginning, or choose a song to start from there.
-
-  Shuffle for a randomized experience.`,
+  Press the play button to start from the beginning, or choose a song to start from there.`,
   daily: `Daily Track
 
   Reset Time at 00:00`,
   rec: `
- Daily genre-based recommendations.
+  Daily genre-based recommendations.
  
-The algorithm dynamically updates the flag in the top right of the recommendations box to showcase the Category Recommendations based on the account's most-listened genre.
+  The algorithm dynamically updates the flag in the top right of the recommendations box to showcase the Genre based on the account's most-listened genre.
 
- Despite flag changes, recommendations align with the genre indicated by the flag at the time of the reset.
+  Despite flag changes, recommendations align with the genre indicated by the flag at the time of the reset.
  
- R : Rocky
- G : Groovy
- A : Alternative
- A+ : Electronic`,
+  R : Rocky
+  G : Groovy
+  A : Alternative
+  A+ : Electronic`,
 };
 
 // > Panel Config Functions

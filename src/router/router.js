@@ -44,4 +44,20 @@ export const router = () => {
 };
 
 window.addEventListener('popstate', router);
-window.addEventListener('load', router);
+window.addEventListener('load', keepAppRouterActive);
+
+// > Launch / Keep State
+
+function keepAppRouterActive() {
+  let getUsers = JSON.parse(localStorage.getItem('users'));
+  let isOneUserActive = getUsers.some((user) => user.status === 'online');
+  //
+  if (!isOneUserActive) {
+    history.pushState(null, null, '/login');
+    router();
+  } else {
+    document.querySelector('header').style.visibility = 'visible';
+    history.pushState(null, null, '/home');
+    router();
+  }
+}

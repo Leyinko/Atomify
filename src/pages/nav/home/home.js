@@ -67,7 +67,7 @@ const loadUserData = async () => {
   let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   let currentDate = new Date().toLocaleDateString('en-US', options);
   // ! TEST ZONE FOR ONE MORE DAY
-  // currentDate = currentDate.replace(/\d+/, '10');
+  // currentDate = currentDate.replace(/\d+/, '13');
   // ! TEST ZONE FOR ONE MORE DAY
   // Get Active User Data
   let user = getActiveUserData();
