@@ -245,6 +245,7 @@ const text_information = {
 const logOutActiveUser = () => {
   history.pushState(null, null, '/login');
   router();
+  window.location.reload();
 };
 
 const resetUserRecommendations = () => {
