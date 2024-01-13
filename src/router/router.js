@@ -53,7 +53,6 @@ function keepAppRouterActive() {
   let isOneUserActive = getUsers ? getUsers.some((user) => user.status === 'online') : null;
   //
   if (!isOneUserActive) {
-    console.log('Here');
     history.pushState(null, null, '/login');
     router();
   } else {

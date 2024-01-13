@@ -1,8 +1,9 @@
 import { general_icons } from '../../../../public/assets_constants';
 import { resetOnlineStatus, userAuthentication } from '../../../data/local-storage-mock';
+import { router } from '../../../router/router';
 import './login.css';
 
-export const Login = async () => {
+export async function Login() {
   // Reset 'Online Status' if Existing user
   let user = localStorage.getItem('users');
   if (user) {
@@ -24,7 +25,7 @@ export const Login = async () => {
   document.querySelector('#login').innerHTML = login_template;
   // Handlers
   userLoginFields();
-};
+}
 
 // > Authentication
 
@@ -32,6 +33,7 @@ const userLoginFields = () => {
   // Elements
   let text_inputs$$ = document.querySelectorAll('#login_container input');
   let log_in_btn$$ = document.querySelector('#login_container button');
+  let sign_up$$ = document.querySelector('#login_container span:last-of-type a');
   // Input Listener for Reset
   text_inputs$$.forEach((input) => {
     input.addEventListener('input', resetUserConnectionChecks);
@@ -45,6 +47,13 @@ const userLoginFields = () => {
     let password = text_inputs$$[1].value;
     // Login
     userAuthentication(email, password);
+  });
+  // Sign Up Button Listener
+  sign_up$$.addEventListener('click', (e) => {
+    e.preventDefault();
+    // Router
+    history.pushState(null, null, '/signup');
+    router();
   });
 };
 
