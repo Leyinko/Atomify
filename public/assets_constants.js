@@ -6,24 +6,24 @@ export const cover_sizes = {
 
 export const general_icons = {
   app_favicon: '/public/assets/icons/atomify-favicon.png.png',
-  app_header: '../assets/icons/header/app_header_latest.png',
+  app_header: '../public/assets/icons/header/app_header_latest.png',
   fetch_loading: '/public/assets/icons/general/app_icon.svg',
 };
 
 export const navigation_icons = {
-  home: '../assets/icons/header/home.svg',
-  explore: '../assets/icons/header/explore.png',
-  generate: '../assets/icons/header/generate.svg',
+  home: '../public/assets/icons/header/home.svg',
+  explore: '../public/assets/icons/header/explore.png',
+  generate: '../public/assets/icons/header/generate.svg',
 };
 
 export const search_icons = {
-  search: '../assets/icons/header/search.svg',
-  cancel: '../assets/icons/header/cross.svg',
+  search: '../public/assets/icons/header/search.svg',
+  cancel: '../public/assets/icons/header/cross.svg',
 };
 
 export const config_panel_icons = {
-  config: '../assets/icons/header/config.svg',
-  help: '../assets/icons/header/question-mark.svg',
+  config: '../public/assets/icons/header/config.svg',
+  help: '../public/assets/icons/header/question-mark.svg',
 };
 
 export const track_info_icon = {
@@ -42,15 +42,15 @@ export const player_icons = {
 };
 
 export const cards_icons = {
-  lyrics: '../assets/icons/card/lyrics.svg',
-  like: '../assets/icons/card/like.svg',
+  lyrics: '../public/assets/icons/card/lyrics.svg',
+  like: '../public/assets/icons/card/like.svg',
   delete_like: '../public/assets/icons/card/delete-like.svg',
-  spotify: '../assets/icons/card/spotify-share.svg',
-  play: '../assets/icons/card/play.svg',
+  spotify: '../public/assets/icons/card/spotify-share.svg',
+  play: '../public/assets/icons/card/play.svg',
 };
 
 export const connection_icons = {
-  info: '../assets/icons/connection/info.svg',
+  info: '../public/assets/icons/connection/info.svg',
 };
 
 export const profile_pictures = {
