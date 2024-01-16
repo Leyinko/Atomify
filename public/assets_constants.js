@@ -5,7 +5,6 @@ export const cover_sizes = {
 };
 
 export const general_icons = {
-  app_favicon: '/assets/icons/atomify-favicon.png.png',
   app_header: '/assets/icons/header/app_header_latest.png',
   fetch_loading: '/assets/icons/general/app_icon.svg',
 };

@@ -11,7 +11,7 @@ export async function Login() {
   }
   // Login Template
   let login_template = `
-		<img src="${general_icons.fetch_loading}">
+		<img src="/assets/icons/general/app_icon.svg">
 			<form id="login_container">
 				<label for="emailField">Email</label>
 				<input type="email" id="emailField" name="emailField" placeholder="Email" autocomplete="off">
