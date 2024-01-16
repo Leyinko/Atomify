@@ -21,7 +21,7 @@ header {
 .app-logo-container {
   flex: 0 0 15%;
   max-width: 140px;
-  min-width: 140px;
+  min-width: 80px;
 }
 
 .app-logo-container img {
@@ -317,4 +317,42 @@ header {
   100% {
     opacity: 1;
   }
+}
+
+/* Responsive */
+
+@media screen and (max-width: 1280px) {
+  .header-container {
+    width: 100%;
+    padding: 20px;
+  }
+
+  #navigation_links img {
+    width: 12px;
+  }
+
+  #navigation_links div a {
+    font-size: 0.7rem;
+  }
+
+  #panel_config {
+    padding-left: 15px;
+  }
+
+  .search_container {
+    height: 35px;
+    flex: 0 0 30%;
+  }
+
+  #modal-config {
+    left: -75px;
+    top: 45px;
+  }
+
+  #modal-config h3 {
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 601px) {
 }
