@@ -16,7 +16,7 @@
 }
 
 #login img {
-  width: 230px;
+  width: 200px;
   animation: signup-atom-pop 2s forwards ease-in-out;
   -webkit-user-drag: none;
 }

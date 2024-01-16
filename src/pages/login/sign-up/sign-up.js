@@ -1,4 +1,4 @@
-import { connection_icons, general_icons, profile_pictures } from '../../../../public/assets_constants';
+import { connection_icons, general_icons, profile_pictures } from '../../../../public/assets_constants.js';
 import { fetchSingularCategoryPreview } from '../../../../public/api/fetch.js';
 import { postRegistration } from '../../../data/local-storage-mock';
 import './sign-up.css';

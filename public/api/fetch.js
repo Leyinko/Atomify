@@ -60,7 +60,7 @@ export const fetchTrackToPlay = async (num) => {
   }
 };
 
-// > Fetch Search Input
+// > Fetch Search Input (Explore)
 
 export const fetchSongsBySearch = async (search) => {
   // Element
@@ -89,7 +89,7 @@ export const fetchSongsBySearch = async (search) => {
   }
 };
 
-// > Fetch User Category (preview url)
+// > Fetch User Category (Sign Up Track Preview)
 
 export const fetchSingularCategoryPreview = async () => {
   // Variables
@@ -124,7 +124,7 @@ export const fetchSingularCategoryPreview = async () => {
   }
 };
 
-// > Fetch Lyrics
+// > Fetch Lyrics & Lyrics Functions
 
 export const fetchLyricsPlayingSong = async (id) => {
   // Elements
@@ -166,6 +166,8 @@ const showLyrics = (text) => {
 
 // > Fetch User Section (like, daily & recommendations)
 
+// Likes Playlist
+
 export const fetchLikedSongsList = async () => {
   // Element
   const user = getActiveUserData();
@@ -189,6 +191,8 @@ export const fetchLikedSongsList = async () => {
   }
 };
 
+// Daily
+
 export const fetchDailySong = async () => {
   // Element
   const user = getActiveUserData();
@@ -207,6 +211,8 @@ export const fetchDailySong = async () => {
     console.error('Error fetching user liked song list:', error);
   }
 };
+
+// Recommendations
 
 export const fetchRecommendationsIDS = async () => {
   // Element

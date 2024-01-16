@@ -1,11 +1,11 @@
 import { MAIN_ELEMENT$$ } from '../../pages/main/main';
 import { fetchTrackToPlay, maxLength } from '../../../public/api/fetch.js';
-import { cover_sizes, player_icons, track_info_icon } from '../../../public/assets_constants';
+import { cover_sizes, player_icons, track_info_icon } from '../../../public/assets_constants.js';
 import { countGenreSeconds, getActiveUserData, setUserData } from '../../data/local-storage-mock';
 import { getIndexOfTrackInLikeQueue, playMusicQueue } from '../../pages/nav/home/home';
 import './player.css';
 
-// > Footer insertion (HTML)
+// > DOM Creation & Insertion
 
 export const FOOTER_ELEMENT$$ = document.createElement('footer');
 FOOTER_ELEMENT$$.setAttribute('role', 'region');
@@ -48,8 +48,8 @@ const footer_template = `
 FOOTER_ELEMENT$$.innerHTML = footer_template;
 document.querySelector('#app').appendChild(FOOTER_ELEMENT$$);
 
-// > DOM Elements & Functional Data
-// Audio Element
+// > Global Elements & Data
+
 const audio$$ = document.querySelector('#audio');
 // Controls
 export const controls = {};
@@ -57,6 +57,7 @@ const ctrls_IDs = ['ctrl_shuffle', 'ctrl_previous', 'ctrl_play', 'ctrl_next', 'c
 for (const ctrl_ID of ctrls_IDs) {
   controls[ctrl_ID + '$$'] = document.getElementById(ctrl_ID);
 }
+
 // Info DOM Manipulation
 const playing_cover$$ = document.getElementById('playing_cover');
 // DOM Ranges Controls
@@ -132,7 +133,7 @@ Object.values(controls).forEach((ctrl) => {
   });
 });
 
-// > Controls Functions
+// > Controls Functions (/each Button)
 
 const playRandomTrack = async () => {
   // From Liked List
@@ -262,7 +263,7 @@ const thumbUnmuteEvent = () => {
   unmuteEvent.stopPropagation();
 };
 
-// > Timestamps & End Of Track
+// > Timestamps & Playing Update
 
 function playerTimeUpdate() {
   const current_time$$ = document.querySelector('.time-range-container span:first-of-type');
@@ -288,6 +289,8 @@ function playerTimeUpdate() {
   // Update Global Like Queue IDS
   getLikedQueueSongs();
 }
+
+// > At End Handlers
 
 function atEndOfTrackHandler() {
   // Handler
@@ -356,7 +359,7 @@ function rangesPlayer() {
   requestAnimationFrame(rangesPlayer);
 }
 
-// > Handle Covers
+// > Zoom Cover Handler
 
 function handleCoverPlayer() {
   const opening_cover_container$$ = document.getElementById('opening-cover-container');
@@ -379,7 +382,7 @@ function handleCoverPlayer() {
   });
 }
 
-// > Visibility Player
+// > Visibility Player & Pause/Play Icon
 
 export const popPlayer = () => {
   FOOTER_ELEMENT$$.style.transform = 'none';

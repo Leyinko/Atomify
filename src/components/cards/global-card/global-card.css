@@ -19,6 +19,7 @@
   position: relative;
   width: 100%;
   filter: drop-shadow(5px 5px 6px rgba(0, 0, 0, 0.473));
+  border-radius: 5px;
   pointer-events: none;
   user-select: none;
 }

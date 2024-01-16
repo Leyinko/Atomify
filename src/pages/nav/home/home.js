@@ -11,6 +11,7 @@ import {
   checkIfLiked,
   popPlayingCard,
   pushStateHomeRefresh,
+  responsivePlayingDistance,
 } from '../../../components/cards/playing-card/playing-card';
 import {
   cards_icons,
@@ -18,7 +19,7 @@ import {
   player_icons,
   profile_pictures,
   recommendations_flags,
-} from '../../../../public/assets_constants';
+} from '../../../../public/assets_constants.js';
 import './home.css';
 
 export const Home = () => {
@@ -321,6 +322,7 @@ export const playTrackFromHome = async (e) => {
     // Playing Card Infos
     checkIfLiked();
     popPlayingCard(playing_container$$);
+    responsivePlayingDistance();
   }
 };
 

@@ -3,7 +3,10 @@ import { addLikeTrack, deleteLikeTrack, getActiveUserData } from '../../../data/
 import { router } from '../../../router/router';
 import './playing-card.css';
 
+// > Playing Card
+
 export const playing_card$$ = (id, img, alt, title, artist, href, bg_color) => {
+  //
   let playing_card = `
   <div id="${id}" class="playing_card">
     <img src="${img}" alt="${alt + '_playing_cover_error'}">
@@ -27,6 +30,8 @@ export const playing_card$$ = (id, img, alt, title, artist, href, bg_color) => {
   playingCardHandlers();
 };
 
+// > Handler
+
 const playingCardHandlers = () => {
   // Ctrls
   let playing_card_ctrls$$ = document.querySelectorAll('#playing_card_ctrls img');
@@ -41,8 +46,13 @@ const playingCardHandlers = () => {
     });
   });
   // Playing Card Hiding toggle
-  hide_playing_card_toggle$$.addEventListener('click', visualShrinkArticle);
+  hide_playing_card_toggle$$.addEventListener('click', () => {
+    responsivePlayingDistance();
+    visualShrinkArticle();
+  });
 };
+
+// > Buttons Functions
 
 const clickFunctions = {
   lyrics: () => {

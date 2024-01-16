@@ -5,9 +5,7 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  width: 100%;
   height: 100%;
-  padding: 10px;
   transition: all 0.3s ease-in-out;
   user-select: none;
 }
@@ -35,7 +33,6 @@
 }
 
 #playing_card_ctrls {
-  margin-top: 5px;
   width: 60%;
   display: flex;
   justify-content: center;
@@ -46,13 +43,7 @@
   width: 20px;
 }
 
-#playing_card_ctrls img:nth-child(3) {
-  padding: 1px;
-}
-
 #playing_card_ctrls img:hover {
-  opacity: 1;
-  /* transform: scale(1.1); */
   cursor: pointer;
 }
 
@@ -86,7 +77,6 @@
   height: 79%;
   overflow-x: hidden;
   opacity: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.541);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   background-color: #181818;
@@ -101,8 +91,6 @@
   line-height: 2.2rem;
   font-weight: 100;
 }
-
-/* TODO : WEBKIT FOR ALL BROWSERS */
 
 .lyrics-container::-webkit-scrollbar {
   width: 10px;

@@ -46,7 +46,6 @@
 }
 
 #error404 button {
-  /* margin-left: 20px; */
   margin-left: 15px;
   width: 170px;
   padding: 10px;
@@ -61,5 +60,4 @@
 
 #error404 button:hover {
   background-color: var(--user-hover);
-  /* transition: all 0.4s; */
 }

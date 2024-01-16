@@ -38,12 +38,14 @@ export const globalCardHandlers = () => {
   );
 };
 
-// > Play
+// > Handler
 
 const handlePlayCard = (play) => {
   play.removeEventListener('click', playCard);
   play.addEventListener('click', playCard);
 };
+
+// > Play
 
 const playCard = async (e) => {
   // Elements

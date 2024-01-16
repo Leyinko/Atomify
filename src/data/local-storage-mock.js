@@ -95,7 +95,7 @@ export const checkLoginData = ([exists, user], password) => {
   } else if (exists && user.password === password) {
     // "Token" granted at connection
     setUserData(user.id, 'status', 'online');
-    usersTestLS();
+    // ! TEST AREA usersTestLS();
     // Redirect /home
     userAccessGranted();
   }
@@ -193,7 +193,7 @@ export const setRecommendations = (array) => {
   localStorage.setItem('users', JSON.stringify(updatedUser));
 };
 
-// > Recommendations Timestamps & Category Update
+// > Recommendations Timestamps & Category Algorithm Update
 
 export const countGenreSeconds = (genre) => {
   // Retrieve User
@@ -256,7 +256,7 @@ export const resetOnlineStatus = () => {
   localStorage.setItem('users', JSON.stringify(getUsers));
 };
 
-// * Checking localStorage Functions * //
+// * ADMIN ZONE & RESET TEST * //
 
 // Status Delete
 // deleteUserData('#COTXKYOHFI', 'recommendations');
@@ -267,7 +267,7 @@ export const usersTestLS = () => {
   // console.log(JSON.parse(users)[0].likes);
 };
 
-usersTestLS();
+// usersTestLS();
 
 function clearAllLS() {
   localStorage.clear();

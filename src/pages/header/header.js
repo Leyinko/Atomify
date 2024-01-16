@@ -1,11 +1,11 @@
 import { MAIN_ELEMENT$$ } from '../main/main';
 import { fetchSongsBySearch } from '../../../public/api/fetch.js';
 import { config_panel_icons, general_icons, navigation_icons, search_icons } from '../../../public/assets_constants';
-import './header.css';
 import { router } from '../../router/router';
 import { resetRecommendationsAlgorithmTimestamps } from '../../data/local-storage-mock';
+import './header.css';
 
-// > Main insertion (HTML)
+// > DOM Creation & Insertion
 
 const HEADER_ELEMENT$$ = document.createElement('header');
 HEADER_ELEMENT$$.setAttribute('role', 'region');
@@ -30,10 +30,11 @@ const header_template = `
 HEADER_ELEMENT$$.innerHTML = header_template;
 document.querySelector('#app').insertBefore(HEADER_ELEMENT$$, MAIN_ELEMENT$$);
 
-// Elements Handlers
+// > Handlers
+
 window.addEventListener('load', headerElementsHandlers);
 
-// > DOM Elements & Functional Data
+// > Global Elements & Data
 // Search Input
 const search_input$$ = document.querySelector('header input[type="text"]');
 const cancel_search_btn$$ = document.querySelector('.search_container img:last-of-type');
@@ -127,7 +128,7 @@ function panelConfig$$() {
   });
 }
 
-// > Panel Config functions
+// > Panel Config (Configuration/Help)
 
 const panelFunctions = {
   config: () => {
@@ -221,7 +222,7 @@ const text_information = {
 
   PC (Predominant Category)
   Reflects the predominant genre of your playlist, giving insight into the overarching theme of your musical preferences.`,
-  likes: `Your Likes List features your favorite songs.
+  likes: `Likes list.
 
   Press the play button to start from the beginning, or choose a song to start from there.`,
   daily: `Daily Track
@@ -237,10 +238,12 @@ const text_information = {
   R : Rocky
   G : Groovy
   A : Alternative
-  A+ : Electronic`,
+  A+ : ++
+  
+  *Reset your algorithm anytime via the Configuration panel.`,
 };
 
-// > Panel Config Functions
+// > Configuration Modal Buttons
 
 const logOutActiveUser = () => {
   history.pushState(null, null, '/login');
@@ -281,7 +284,7 @@ const resetUserRecommendations = () => {
   }
 };
 
-// > DOM Elements Handlers
+// > Handlers Function
 
 function headerElementsHandlers() {
   panelConfig$$();
