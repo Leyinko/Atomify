@@ -10,46 +10,46 @@ export const general_icons = {
 };
 
 export const navigation_icons = {
-  home: '../public/assets/icons/header/home.svg',
-  explore: '../public/assets/icons/header/explore.png',
-  generate: '../public/assets/icons/header/generate.svg',
+  home: '/assets/icons/header/home.svg',
+  explore: '/assets/icons/header/explore.png',
+  generate: '/assets/icons/header/generate.svg',
 };
 
 export const search_icons = {
-  search: '../public/assets/icons/header/search.svg',
-  cancel: '../public/assets/icons/header/cross.svg',
+  search: '/assets/icons/header/search.svg',
+  cancel: '/assets/icons/header/cross.svg',
 };
 
 export const config_panel_icons = {
-  config: '../public/assets/icons/header/config.svg',
-  help: '../public/assets/icons/header/question-mark.svg',
+  config: '/assets/icons/header/config.svg',
+  help: '/assets/icons/header/question-mark.svg',
 };
 
 export const track_info_icon = {
-  cover_zoom_btn: './public/assets/icons/player/develop-cover.png',
+  cover_zoom_btn: '/assets/icons/player/develop-cover.png',
 };
 
 export const player_icons = {
-  shuffle: './public/assets/icons/player/shuffle.svg',
-  previous: './public/assets/icons/player/previous.svg',
-  play: './public/assets/icons/player/play.svg',
-  pause: './public/assets/icons/player/pause.svg',
-  next: './public/assets/icons/player/next.svg',
-  repeat: './public/assets/icons/player/repeat.svg',
-  volume: './public/assets/icons/player/volume.svg',
-  volume_mute: './public/assets/icons/player/volume-mute.png',
+  shuffle: '/assets/icons/player/shuffle.svg',
+  previous: '/assets/icons/player/previous.svg',
+  play: '/assets/icons/player/play.svg',
+  pause: '/assets/icons/player/pause.svg',
+  next: '/assets/icons/player/next.svg',
+  repeat: '/assets/icons/player/repeat.svg',
+  volume: '/assets/icons/player/volume.svg',
+  volume_mute: '/assets/icons/player/volume-mute.png',
 };
 
 export const cards_icons = {
-  lyrics: '../public/assets/icons/card/lyrics.svg',
-  like: '../public/assets/icons/card/like.svg',
-  delete_like: '../public/assets/icons/card/delete-like.svg',
-  spotify: '../public/assets/icons/card/spotify-share.svg',
-  play: '../public/assets/icons/card/play.svg',
+  lyrics: '/assets/icons/card/lyrics.svg',
+  like: '/assets/icons/card/like.svg',
+  delete_like: '/assets/icons/card/delete-like.svg',
+  spotify: '/assets/icons/card/spotify-share.svg',
+  play: '/assets/icons/card/play.svg',
 };
 
 export const connection_icons = {
-  info: '../public/assets/icons/connection/info.svg',
+  info: '/assets/icons/connection/info.svg',
 };
 
 export const profile_pictures = {
@@ -62,8 +62,8 @@ export const profile_pictures = {
 };
 
 export const recommendations_flags = {
-  A_plus: '../public/assets/icons/flags/A+.png',
-  A: '../public/assets/icons/flags/A.png',
-  G: '../public/assets/icons/flags/G.png',
-  R: '../public/assets/icons/flags/R.png',
+  A_plus: '/assets/icons/flags/A+.png',
+  A: '/assets/icons/flags/A.png',
+  G: '/assets/icons/flags/G.png',
+  R: '/assets/icons/flags/R.png',
 };
