@@ -16,7 +16,7 @@
   max-width: 300px;
   height: 100%;
   margin-top: 200px;
-  background: url('public/assets/icons/general/error404.png') top/contain no-repeat;
+  background: url('/assets/icons/general/error404.png') top/contain no-repeat;
   opacity: 0.6;
   z-index: -1;
 }

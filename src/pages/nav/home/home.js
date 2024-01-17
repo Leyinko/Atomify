@@ -272,8 +272,8 @@ const playLikePlaylistHandler = () => {
   // Handler
   play_like_btn$$.addEventListener('click', () => {
     // Play/Pause if queue song
-    if (audio$$.getAttribute('queue') && !audio$$.paused) {
-      audio$$.pause();
+    if (audio$$.getAttribute('queue')) {
+      !audio$$.paused ? audio$$.pause() : audio$$.play();
     } else {
       // Play from beginning
       playMusicQueue(0);
@@ -289,7 +289,6 @@ export const playMusicQueue = async (index) => {
   const playing_container$$ = document.querySelector('#playing_container');
   // Check Queue Liked
   let currentSong = likedQueueIDs[index];
-
   // Played From Like
   if (currentSong) {
     await fetchTrackToPlay(currentSong);

@@ -94,12 +94,12 @@ footer {
 }
 
 #ctrl_shuffle.player_active {
-  content: url('public/assets/icons/player/shuffle-active.png');
+  content: url('/assets/icons/player/shuffle-active.png');
   opacity: 1;
 }
 
 #ctrl_repeat.player_active {
-  content: url('public/assets/icons/player/repeat-active.png');
+  content: url('/assets/icons/player/repeat-active.png');
   opacity: 1;
 }
 

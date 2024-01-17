@@ -48,7 +48,7 @@
 }
 
 .like_active {
-  content: url('public/assets/icons/player/like-active.png');
+  content: url('/assets/icons/player/like-active.png');
 }
 
 .hide-playing-card-toggle {
