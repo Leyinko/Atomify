@@ -46,7 +46,6 @@ header {
   justify-content: center;
   gap: 0.2125rem;
   cursor: pointer;
-  /* border: 1px solid green; */
 }
 
 #navigation_links img {
@@ -160,6 +159,7 @@ header {
 
 #panel_config img {
   width: 18px;
+  object-fit: cover;
   cursor: pointer;
 }
 
@@ -240,7 +240,7 @@ header {
 #help-container {
   position: absolute;
   width: 100%;
-  height: 105%;
+  height: 106%;
   animation: help-pop 0.5s ease-in-out forwards;
   background-color: var(--help-background);
   border-radius: 5px;

@@ -1,6 +1,12 @@
 import { MAIN_ELEMENT$$ } from '../main/main';
 import { fetchSongsBySearch } from '../../../public/api/fetch.js';
-import { config_panel_icons, general_icons, navigation_icons, search_icons } from '../../../public/assets_constants';
+import {
+  active_general,
+  config_panel_icons,
+  general_icons,
+  navigation_icons,
+  search_icons,
+} from '../../../public/assets_constants';
 import { router } from '../../router/router';
 import { resetRecommendationsAlgorithmTimestamps } from '../../data/local-storage-mock';
 import './header.css';
@@ -166,15 +172,22 @@ const panelFunctions = {
   },
   help: () => {
     // Element
+    let help_btn$$ = document.querySelectorAll('#panel_config img')[1];
     let article$$ = document.querySelector('#home');
     let help_container$$ = document.querySelector('#help-container');
     // Visibility
     if (help_container$$) {
       help_container$$.remove();
+      // Btn Switch
+      help_btn$$.src = config_panel_icons.help;
       return;
     }
     // Check if /home
     if (article$$) {
+      // Btn On
+      help_btn$$.classList.add('help-active');
+      // Btn Switch
+      help_btn$$.src = active_general.help;
       // Elements + DOM
       let help_container = document.createElement('div');
       help_container.id = 'help-container';
@@ -212,6 +225,18 @@ const panelFunctions = {
     //
   },
 };
+
+// > Blur Handler for Configuration Btn
+
+document.addEventListener('click', (e) => {
+  let modal_config$$ = document.querySelector('#modal-config');
+  let config_btn$$ = document.querySelectorAll('#panel_config img')[0];
+
+  if (e.target !== config_btn$$ && modal_config$$ && !modal_config$$.contains(e.target)) {
+    modal_config$$.remove();
+    return;
+  }
+});
 
 // > Help Text Information
 

@@ -1,4 +1,4 @@
-import { cards_icons } from '../../../../public/assets_constants';
+import { active_general, cards_icons } from '../../../../public/assets_constants';
 import { addLikeTrack, deleteLikeTrack, getActiveUserData } from '../../../data/local-storage-mock';
 import { router } from '../../../router/router';
 import './playing-card.css';
@@ -56,8 +56,13 @@ const playingCardHandlers = () => {
 
 const clickFunctions = {
   lyrics: () => {
+    let lyrics_btn$$ = document.querySelectorAll('#playing_card_ctrls img');
     let lyrics_container$$ = document.querySelector('.lyrics-container');
     lyrics_container$$.classList.toggle('lyrics-on');
+    // Btn Switch
+    lyrics_container$$.classList.contains('lyrics-on')
+      ? (lyrics_btn$$[0].src = active_general.lyrics)
+      : (lyrics_btn$$[0].src = cards_icons.lyrics);
   },
   like: (e) => {
     let song = e.target.parentElement.parentElement.id;

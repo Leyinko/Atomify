@@ -100,6 +100,12 @@ const profilePictureManager = () => {
   // Modal Toggle Visibility
   profile_picture_container$$.addEventListener('click', () => {
     modal_selection$$.classList.toggle('selection-active');
+    //
+    let h1 = document.querySelector('.user-information h1');
+    let spans = document.querySelectorAll('.user-information span');
+
+    h1.classList.toggle('blurred');
+    spans.forEach((span) => span.classList.toggle('blurred'));
   });
   // Pictures
   let pictures$$ = Object.values(profile_pictures);

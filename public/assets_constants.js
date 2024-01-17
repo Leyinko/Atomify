@@ -67,3 +67,8 @@ export const recommendations_flags = {
   G: '/assets/icons/flags/G.png',
   R: '/assets/icons/flags/R.png',
 };
+
+export const active_general = {
+  help: '/assets/icons/header/question-mark-active.png',
+  lyrics: 'public/assets/icons/card/lyrics-active.png',
+};

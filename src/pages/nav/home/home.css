@@ -16,11 +16,16 @@ article#home.shrink_result {
 
 .user-information {
   position: relative;
-  /* margin-top: 50px; */
   margin: 0 auto;
   padding: 30px;
   width: 60%;
-  /* height: 20%; */
+  filter: none;
+  /* border: 1px solid blue; */
+}
+
+.blurred {
+  filter: blur(6px) brightness(0.8);
+  transition: all 0.2s ease-in-out;
 }
 
 /* Profile Picture */
@@ -39,7 +44,7 @@ article#home.shrink_result {
   width: 100%;
   object-fit: cover;
   filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, 0.301));
-  transition: all 0.1s ease-in-out;
+  transition: filter 0.1s ease-in-out;
 }
 
 #picture-container:hover {
@@ -56,19 +61,20 @@ article#home.shrink_result {
 
 #profile-pictures-selection {
   position: absolute;
-  top: -50px;
-  left: -5px;
+  top: -60px;
+  left: 0px;
   padding: 10px 20px;
   display: flex;
+  /* width: 190px; */
   justify-content: center;
   flex-wrap: wrap;
-  background-color: #3130306b;
+  background-color: #18181854;
   border-radius: 5px;
   visibility: hidden;
   z-index: 10;
   opacity: 0;
   border-bottom-left-radius: 20px;
-  transition: all 0.3s ease-in-out;
+  /* transition: all 0.3s ease-in-out; */
   /* opacity: 0.6; */
 }
 
@@ -82,7 +88,7 @@ article#home.shrink_result {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  opacity: 0.6;
+  /* opacity: 0.6; */
 }
 
 .profile-picture-miniature:hover {
@@ -112,7 +118,7 @@ article#home.shrink_result {
 
 .user-information > span {
   /* margin-left: 14px; */
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .user-information > h1 {
@@ -128,7 +134,7 @@ article#home.shrink_result {
 }
 
 .current-date {
-  margin-right: 10px;
+  margin-right: 25px;
   text-align: right;
   font-size: 10px;
 }
@@ -137,14 +143,11 @@ article#home.shrink_result {
   width: fit-content;
   margin-top: 10px;
   padding: 0px 15px;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 0.5rem;
   /* border: 1px solid red; */
 }
 
 .playlist-info span {
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .playlist-info img {
@@ -169,7 +172,6 @@ article#home.shrink_result {
 #play_liked_playlist:hover {
   transform: scale(1.05);
   box-shadow: 2px 1px 6px 0px rgba(0, 0, 0, 0.589);
-
   cursor: pointer;
 }
 
@@ -354,9 +356,8 @@ ul::-webkit-scrollbar-thumb {
 
 #user-category {
   position: absolute;
-  right: -35px;
-  top: 5px;
+  right: -45px;
+  top: -5px;
   width: 40px;
-  transform: rotate(90deg);
   opacity: 0.6;
 }
