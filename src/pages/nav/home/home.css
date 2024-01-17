@@ -200,17 +200,6 @@ ul {
   /* background-color: rgba(0, 0, 0, 0.466); */
 }
 
-ul::-webkit-scrollbar {
-  width: 10px;
-  color: rgba(253, 253, 253, 0.171);
-}
-
-ul::-webkit-scrollbar-thumb {
-  width: 0px;
-  height: 0px;
-  background-color: rgba(247, 247, 247, 0.24);
-}
-
 .empty-likes {
   position: absolute;
   top: 50%;
