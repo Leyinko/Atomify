@@ -6,12 +6,15 @@ import { getActiveUserData, setRecommendations } from '../../src/data/local-stor
 import {
   generateDailyTrack,
   generateRecommendationsSongs$$,
+  highlightPlayingSongFromLikeList,
   likedSongList,
   noLikedSongsMessage$$,
 } from '../../src/pages/nav/home/home';
+import { highlightGlobalPlayingCard } from '../../src/components/cards/global-card/global-card';
 
 // DDBB
-export const DDBB = '/api/playlist_explorer.json';
+export const DDBB = 'https://spoti-lucafy.vercel.app/api/v1/songs';
+// export const DDBB = '/api/playlist_explorer.json';
 
 // > Play Selected Song
 
@@ -55,6 +58,8 @@ export const fetchTrackToPlay = async (num) => {
     );
     // Lyrics Box
     fetchLyricsPlayingSong(song.track.id);
+    // Highlight Playing Like Song
+    highlightPlayingSongFromLikeList();
   } catch (error) {
     console.error('Error fetching data:', error);
   }
@@ -81,7 +86,9 @@ export const fetchSongsBySearch = async (search) => {
         song.track.artist.toLowerCase().includes(search.toLowerCase())
     );
     // DOM Cards
-    createCardOnSearch(songs);
+    await createCardOnSearch(songs);
+    // Search for Playing Track
+    highlightGlobalPlayingCard();
     // Loaded
     loading_logo$$.style.display = 'none';
   } catch (error) {

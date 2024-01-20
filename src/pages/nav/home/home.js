@@ -82,13 +82,17 @@ const loadUserData = async () => {
   await fetchLikedSongsList();
   await fetchDailySong();
   await fetchRecommendationsSongs();
-  // Local User Home Data
-  generatePopularityRate();
-  generatePredominantCategory();
-  profilePictureManager();
+  // Local User Home Data (Injection Handler)
+  let checkerInjectOnce = document.querySelector('.playlist-info');
+  if (checkerInjectOnce && checkerInjectOnce.childNodes.length === 0) {
+    generatePopularityRate();
+    generatePredominantCategory();
+    profilePictureManager();
+  }
   // Like Playlist
   playLikePlaylistHandler();
   getLikedQueueSongs();
+  highlightPlayingSongFromLikeList();
 };
 
 // > Profile Picture
@@ -208,36 +212,40 @@ const generatePredominantCategory = () => {
 export const likedSongList = async (songs) => {
   //DOM
   const list = document.querySelector('#liked-list');
-  songs.forEach((song) => {
-    list.innerHTML += likedSongListElement$$(song);
-  });
-  // No Liked Songs Message
-  if (list.children.length === 0) {
-    noLikedSongsMessage$$();
+  if (list && list.childNodes.length === 0) {
+    songs.forEach((song) => {
+      list.innerHTML += likedSongListElement$$(song);
+    });
+    // No Liked Songs Message
+    if (list.children.length === 0) {
+      noLikedSongsMessage$$();
+    }
+    // LI Handlers
+    const list_elements$$ = document.querySelectorAll('.liked_song_li');
+    list_elements$$.forEach((element) => {
+      element.addEventListener('click', (e) => {
+        // Get Index of Target in queue
+        let targetIndex = getIndexOfTrackInLikeQueue(e.target.id);
+        // Play Track
+        if (e.detail === 2) {
+          playMusicQueue(targetIndex);
+          // Tag as Queue
+          document.querySelector('audio').setAttribute('queue', true);
+        }
+      });
+    });
+    // Delete Like Btn Handlers
+    const delete_like_buttons$$ = document.querySelectorAll('.liked_song_li img:last-of-type');
+    delete_like_buttons$$.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        let target = e.target.parentElement.id;
+        // Delete & Refresh/Update Playing card
+        updateLikeIconFromPlayingCard(target);
+        // Remove Listening Queue Attribute if deleted
+        document.querySelector('audio').removeAttribute('queue');
+      });
+    });
   }
-  // LI Handlers
-  const list_elements$$ = document.querySelectorAll('.liked_song_li');
-  list_elements$$.forEach((element) => {
-    element.addEventListener('click', (e) => {
-      // Get Index of Target in queue
-      let targetIndex = getIndexOfTrackInLikeQueue(e.target.id);
-      // Play Track
-      if (e.detail === 2) {
-        playMusicQueue(targetIndex);
-        // Tag as Queue
-        document.querySelector('audio').setAttribute('queue', true);
-      }
-    });
-  });
-  // Delete Like Btn Handlers
-  const delete_like_buttons$$ = document.querySelectorAll('.liked_song_li img:last-of-type');
-  delete_like_buttons$$.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      let target = e.target.parentElement.id;
-      // Delete & Refresh/Update Playing card
-      updateLikeIconFromPlayingCard(target);
-    });
-  });
 };
 
 export const noLikedSongsMessage$$ = () => {
@@ -268,24 +276,41 @@ const likedSongListElement$$ = (song) => {
 
 export const getIndexOfTrackInLikeQueue = (element) => likedQueueIDs.indexOf(element);
 
+export const highlightPlayingSongFromLikeList = () => {
+  const likedSongs = document.querySelectorAll('#liked-list li');
+  const audio$$ = document.querySelector('audio');
+  likedSongs.forEach((song) => {
+    if (song.id === audio$$.getAttribute('playing_track_id')) {
+      song.classList.add('playing-liked-song-active');
+    } else {
+      song.classList.remove('playing-liked-song-active');
+    }
+  });
+};
+
 // > Play Like Playlist
 
 const playLikePlaylistHandler = () => {
   // Elements
   let play_like_btn$$ = document.querySelector('#play_liked_playlist');
+  const likedSongs = document.querySelectorAll('#liked-list li');
   const audio$$ = document.querySelector('audio');
   // Handler
-  play_like_btn$$.addEventListener('click', () => {
-    // Play/Pause if queue song
-    if (audio$$.getAttribute('queue')) {
-      !audio$$.paused ? audio$$.pause() : audio$$.play();
-    } else {
-      // Play from beginning
-      playMusicQueue(0);
-      // Tag as Queue
-      audio$$.setAttribute('queue', true);
-    }
-  });
+  if (play_like_btn$$) {
+    play_like_btn$$.addEventListener('click', (e) => {
+      // Play/Pause if queue song
+      if (audio$$.getAttribute('queue')) {
+        !audio$$.paused ? audio$$.pause() : audio$$.play();
+      } else if (likedSongs.length > 0) {
+        // Play from beginning
+        playMusicQueue(0);
+        // Tag as Queue
+        audio$$.setAttribute('queue', true);
+      } else {
+        e.preventDefault();
+      }
+    });
+  }
 };
 
 export const playMusicQueue = async (index) => {
@@ -350,19 +375,21 @@ export const generateDailyTrack = (daily) => {
   let daily_container$$ = document.querySelector('.daily-track');
   let user = getActiveUserData();
   // User Daily ID
-  if (!user.daily) {
-    daily_container$$.id = `${daily.track.id}`;
-  } else {
-    daily_container$$.id = user.daily;
+  if (daily_container$$) {
+    if (!user.daily) {
+      daily_container$$.id = `${daily.track.id}`;
+    } else {
+      daily_container$$.id = user.daily;
+    }
+    // Track Info
+    daily_container$$.innerHTML = dailyTemplate$$(daily);
+    // Handler
+    daily_container$$.addEventListener('click', (e) => {
+      playTrackFromHome(e);
+      // Tag as NOT from queue
+      document.querySelector('audio').removeAttribute('queue');
+    });
   }
-  // Track Info
-  daily_container$$.innerHTML = dailyTemplate$$(daily);
-  // Handler
-  daily_container$$.addEventListener('click', (e) => {
-    playTrackFromHome(e);
-    // Tag as NOT from queue
-    document.querySelector('audio').removeAttribute('queue');
-  });
 };
 
 const dailyTemplate$$ = (song) => {
@@ -378,23 +405,28 @@ const dailyTemplate$$ = (song) => {
 export const generateRecommendationsSongs$$ = (recommendations) => {
   // Elements
   let recommendations_ul$$ = document.querySelector('#recommendations-list');
-  // DOM
-  recommendations.forEach((song) => {
-    recommendations_ul$$.innerHTML += recommendationsTemplate$$(
-      song.track.id,
-      song.track.images[cover_sizes.medium].url,
-      song.track.id
-    );
-  });
-  // Handlers
-  let rec_cards$$ = document.querySelectorAll('#recommendations-list div');
-  rec_cards$$.forEach((card) => {
-    card.addEventListener('click', (e) => {
-      playTrackFromHome(e);
-      // Tag as NOT from queue
-      document.querySelector('audio').removeAttribute('queue');
-    });
-  });
+  let recommendations_cards$$ = document.querySelectorAll('#recommendations-list div');
+  if (recommendations_ul$$) {
+    if (recommendations_cards$$.length === 0) {
+      // DOM
+      recommendations.forEach((song) => {
+        recommendations_ul$$.innerHTML += recommendationsTemplate$$(
+          song.track.id,
+          song.track.images[cover_sizes.medium].url,
+          song.track.id
+        );
+      });
+      // Handlers
+      let rec_cards$$ = document.querySelectorAll('#recommendations-list div');
+      rec_cards$$.forEach((card) => {
+        card.addEventListener('click', (e) => {
+          playTrackFromHome(e);
+          // Tag as NOT from queue
+          document.querySelector('audio').removeAttribute('queue');
+        });
+      });
+    }
+  }
 };
 
 const recommendationsTemplate$$ = (id, img, alt) => {

@@ -51,6 +51,14 @@ const placeholder = 'What do you want to listen to?';
 
 // > Navigation Links
 
+function headerLogoRedirectHandler() {
+  let logo$$ = document.querySelector('.app-logo-container');
+  logo$$.addEventListener('click', () => {
+    history.pushState(null, null, '/home');
+    router();
+  });
+}
+
 function navigationLink$$() {
   // Container
   const navigation_container$$ = document.getElementById('navigation_links');
@@ -312,6 +320,7 @@ const resetUserRecommendations = () => {
 // > Handlers Function
 
 function headerElementsHandlers() {
+  headerLogoRedirectHandler();
   panelConfig$$();
   navigationLink$$();
 }

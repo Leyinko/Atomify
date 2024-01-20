@@ -262,6 +262,10 @@ ul {
   width: 110px;
 }
 
+.playing-liked-song-active {
+  color: var(--green-spotify);
+}
+
 /* Daily */
 
 .daily-track {
@@ -284,7 +288,7 @@ ul {
 
 .daily-track img {
   width: 180px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.288);
   filter: drop-shadow(5px 5px 6px rgba(0, 0, 0, 0.473));
@@ -294,17 +298,16 @@ ul {
 .daily-track h3 {
   margin-bottom: 10px;
   margin-left: 10px;
-  font-size: 14px;
-  align-self: flex-start;
+  font-size: 13px;
   pointer-events: none;
+  line-height: 18px;
 }
 
 .daily-track span {
   padding-top: 4px;
   margin-left: 10px;
-  align-self: flex-start;
   opacity: 0.7;
-  font-size: 12px;
+  font-size: 11px;
   pointer-events: none;
 }
 

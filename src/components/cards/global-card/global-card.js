@@ -1,7 +1,6 @@
 import { fetchTrackToPlay } from '../../../../public/api/fetch';
 import { checkIfLiked, popPlayingCard, responsivePlayingDistance } from '../playing-card/playing-card';
-import { cards_icons } from '../../../../public/assets_constants';
-import { popPlayer } from '../../player/player';
+import { likedQueueIDs, popPlayer } from '../../player/player';
 import './global-card.css';
 
 // > Global Explore Card
@@ -10,9 +9,6 @@ export const global_search_card$$ = (id, img, alt) => {
   let global_card = `
   <div id="${id}" class="global_card">
     <img id="card_cover" src="${img}" alt="${alt + '_cover_error'}">
-    <div role="button" id="ctrl_play_card_${id}">
-     	<img src="${cards_icons.play}" alt="play_icon">
-    </div>
   </div>
   `;
   // Return
@@ -28,21 +24,31 @@ export const globalCardHandlers = () => {
   filtered_cards$$.forEach((card) =>
     card.addEventListener('click', async (e) => {
       // Play btn
-      let play = e.target.children[1];
-      if (play) {
-        play.classList.toggle('show-play');
+      let play = e.target;
+      // console.log(play);
+      if (play && e.detail === 2) {
         // Handle Play
-        handlePlayCard(play);
+        await playCard(e);
+        // Selected / Playing
+        highlightGlobalPlayingCard();
       }
     })
   );
 };
 
-// > Handler
+// > Playing Card Highlighted
 
-const handlePlayCard = (play) => {
-  play.removeEventListener('click', playCard);
-  play.addEventListener('click', playCard);
+export const highlightGlobalPlayingCard = () => {
+  let filtered_cards$$ = document.querySelectorAll('.global_card');
+  const audio$$ = document.querySelector('audio');
+  //
+  filtered_cards$$.forEach((card) => {
+    if (card.id === audio$$.getAttribute('playing_track_id')) {
+      card.classList.add('global-card-active');
+    } else {
+      card.classList.remove('global-card-active');
+    }
+  });
 };
 
 // > Play
@@ -52,14 +58,17 @@ const playCard = async (e) => {
   const audio$$ = document.querySelector('audio');
   const playing_container$$ = document.querySelector('#playing_container');
   // Select Parent Card Element
-  let currentCard = await e.target.parentElement.parentElement;
+  let currentCard = await e.target;
   // Play when click on Card ctrl Play
   await fetchTrackToPlay(currentCard.id);
   audio$$.play();
-  // Tag as NOT from queue
-  audio$$.removeAttribute('queue');
+  // Check if on Like Playlist (queue)
+  if (likedQueueIDs.includes(currentCard.id)) {
+    audio$$.setAttribute('queue', true);
+  } else {
+    audio$$.removeAttribute('queue');
+  }
   // Visuals
-  await currentCard.click();
   // Player (One time)
   playing_container$$.style.display !== 'block' ? popPlayer() : null;
   // Playing Card

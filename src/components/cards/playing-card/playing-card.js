@@ -88,13 +88,16 @@ export function checkIfLiked() {
 }
 
 function likeUnlikeSong(e, track) {
+  let audio$$ = document.querySelector('audio');
   // Like/Unlike
   if (e.target.className.includes('like_active')) {
     deleteLikeTrack(track);
     e.target.classList.remove('like_active');
+    audio$$.removeAttribute('queue');
   } else {
     addLikeTrack(track);
     e.target.classList.add('like_active');
+    audio$$.setAttribute('queue', true);
   }
   // Visual Update Home on VP
   pushStateHomeRefresh();

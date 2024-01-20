@@ -22,6 +22,7 @@ header {
   flex: 0 0 15%;
   max-width: 140px;
   min-width: 80px;
+  cursor: pointer;
 }
 
 .app-logo-container img {
@@ -59,6 +60,16 @@ header {
   font-size: 0.8rem;
   color: white;
   pointer-events: none;
+}
+
+.navigation-icon-active {
+  filter: invert(50%) sepia(94%) saturate(403%) hue-rotate(88deg) brightness(94%) contrast(92%);
+}
+
+#navigation_links div a.navigation-text-active {
+  color: var(--green-spotify);
+  font-weight: 800;
+  /* font-size: 15px; */
 }
 
 .search_container {

@@ -309,13 +309,18 @@ function atEndOfTrackHandler() {
       playRandomTrack();
     }
     if (isFromQueue) {
-      // Get audio ID
+      // Get audio Elements
       let id = audio$$.getAttribute('playing_track_id');
       let targetIndex = getIndexOfTrackInLikeQueue(id + 1);
-      // Play Track
-      playMusicQueue(targetIndex);
-      // Tag as Queue
-      audio$$.setAttribute('queue', true);
+      // Condition
+      if (id === likedQueueIDs[likedQueueIDs.length - 1]) {
+        audio$$.removeAttribute('queue');
+      } else {
+        // Play Track
+        playMusicQueue(targetIndex);
+        // Tag as Queue
+        audio$$.setAttribute('queue', true);
+      }
     }
   });
 }
@@ -414,5 +419,6 @@ export const getRandomTrackID = (max) => String(Math.floor(Math.random() * `${ma
 
 export function getLikedQueueSongs() {
   likedQueueIDs = [];
-  document.querySelectorAll('.liked_song_li').forEach((song) => likedQueueIDs.push(song.getAttribute('id')));
+  let user = getActiveUserData();
+  user.likes.forEach((song) => likedQueueIDs.push(song));
 }
