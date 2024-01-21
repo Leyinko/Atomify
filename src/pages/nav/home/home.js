@@ -252,14 +252,16 @@ export const noLikedSongsMessage$$ = () => {
   // Element
   const list = document.querySelector('#liked-list');
   // DOM
-  let empty_likes$$ = document.createElement('span');
-  empty_likes$$.className = 'empty-likes';
-  empty_likes$$.textContent = 'No songs liked yet.';
+  if (list) {
+    let empty_likes$$ = document.createElement('span');
+    empty_likes$$.className = 'empty-likes';
+    empty_likes$$.textContent = 'No songs liked yet.';
 
-  if (list.children.length === 0) {
-    list.appendChild(empty_likes$$);
-  } else {
-    empty_likes$$.remove();
+    if (list.children.length === 0) {
+      list.appendChild(empty_likes$$);
+    } else {
+      empty_likes$$.remove();
+    }
   }
 };
 

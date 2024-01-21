@@ -14,7 +14,6 @@ import { highlightGlobalPlayingCard } from '../../src/components/cards/global-ca
 
 // DDBB
 export const DDBB = 'https://spoti-lucafy.vercel.app/api/v1/songs';
-// export const DDBB = '/api/playlist_explorer.json';
 
 // > Play Selected Song
 
@@ -111,7 +110,7 @@ export const fetchSingularCategoryPreview = async () => {
     let data = await response.json();
     let preview = await data.filter((item) => item.track?.preview_url);
     while (count !== 3) {
-      let random = Math.floor(Math.random() * `${preview.length}`) + 1;
+      let random = Math.floor(Math.random() * `${preview.length - 1}`) + 1;
       if (!sort.includes(preview[random].track.class)) {
         // Singularity conditional
         sort.push(preview[random].track.class);

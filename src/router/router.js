@@ -63,9 +63,11 @@ function keepAppRouterActive() {
     router();
   } else {
     document.querySelector('header').style.visibility = 'visible';
-    // Home
-    history.pushState(null, null, '/home');
-    router();
+    setTimeout(() => {
+      // Home
+      history.pushState(null, null, '/home');
+      router();
+    }, 10);
   }
 }
 

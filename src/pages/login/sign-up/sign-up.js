@@ -10,11 +10,11 @@ export const Signup = () => {
 			<label for="emailField">Email</label>
 			<input type="email" id="emailField" name="emailField" placeholder="Email">
 			<label for="usernameField">Username</label>
-			<input type="text" id="usernameField" name="usernameField" placeholder="Username">
+			<input autocomplete="username" type="text" id="usernameField" name="usernameField" placeholder="Username">
 			<label for="passwordField">Create password</label>
-			<input type="text" id="passwordField" name="passwordField" placeholder="Password">
+			<input autocomplete="new-password" type="password" id="passwordField" name="passwordField" placeholder="Password">
 			<label for="confirmPasswordField">Confirm password</label>
-			<input type="text" id="confirmPasswordField" name="confirmPasswordField" placeholder="Password">
+			<input autocomplete="new-password" type="password" id="confirmPasswordField" name="confirmPasswordField" placeholder="Confirm">
 			<button type="submit">Sign Up</button>
 		</form>
 `;

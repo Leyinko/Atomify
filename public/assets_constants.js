@@ -71,4 +71,5 @@ export const recommendations_flags = {
 export const active_general = {
   help: '/assets/icons/header/question-mark-active.png',
   lyrics: '/assets/icons/card/lyrics-active.png',
+  config: '/assets/icons/header/config-active.png',
 };

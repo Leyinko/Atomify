@@ -145,9 +145,11 @@ function panelConfig$$() {
 // > Panel Config (Configuration/Help)
 
 const panelFunctions = {
-  config: () => {
+  config: (e) => {
     // Element
     let modal_config$$ = document.querySelector('#modal-config');
+    // Active Icon
+    e.target.src = active_general.config;
     //
     if (!modal_config$$) {
       // Creation
@@ -174,7 +176,8 @@ const panelFunctions = {
         resetUserRecommendations();
       });
     } else {
-      // Toggle Visibility by Removing from DOM
+      // Toggle Visibility and Active icon by Removing from DOM
+      e.target.src = config_panel_icons.config;
       modal_config$$.remove();
     }
   },
@@ -242,6 +245,7 @@ document.addEventListener('click', (e) => {
 
   if (e.target !== config_btn$$ && modal_config$$ && !modal_config$$.contains(e.target)) {
     modal_config$$.remove();
+    config_btn$$.src = config_panel_icons.config;
     return;
   }
 });

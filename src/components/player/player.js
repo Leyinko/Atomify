@@ -420,5 +420,5 @@ export const getRandomTrackID = (max) => String(Math.floor(Math.random() * `${ma
 export function getLikedQueueSongs() {
   likedQueueIDs = [];
   let user = getActiveUserData();
-  user.likes.forEach((song) => likedQueueIDs.push(song));
+  user.likes ? user.likes.forEach((song) => likedQueueIDs.push(song)) : null;
 }
