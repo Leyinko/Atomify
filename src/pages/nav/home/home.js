@@ -276,6 +276,13 @@ const likedSongListElement$$ = (song) => {
   `;
 };
 
+export const ascendingOrderLikeTracks = (array) => {
+  return array
+    .map((track) => Number(track))
+    .sort((a, b) => a - b)
+    .map((number) => String(number));
+};
+
 export const getIndexOfTrackInLikeQueue = (element) => likedQueueIDs.indexOf(element);
 
 export const highlightPlayingSongFromLikeList = () => {

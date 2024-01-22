@@ -2,7 +2,7 @@ import { MAIN_ELEMENT$$ } from '../../pages/main/main';
 import { fetchTrackToPlay, maxLength } from '../../../public/api/fetch.js';
 import { cover_sizes, player_icons, track_info_icon } from '../../../public/assets_constants.js';
 import { countGenreSeconds, getActiveUserData, setUserData } from '../../data/local-storage-mock';
-import { getIndexOfTrackInLikeQueue, playMusicQueue } from '../../pages/nav/home/home';
+import { ascendingOrderLikeTracks, getIndexOfTrackInLikeQueue, playMusicQueue } from '../../pages/nav/home/home';
 import './player.css';
 
 // > DOM Creation & Insertion
@@ -421,4 +421,5 @@ export function getLikedQueueSongs() {
   likedQueueIDs = [];
   let user = getActiveUserData();
   user.likes ? user.likes.forEach((song) => likedQueueIDs.push(song)) : null;
+  likedQueueIDs = ascendingOrderLikeTracks(likedQueueIDs);
 }

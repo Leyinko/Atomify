@@ -187,6 +187,7 @@ export const fetchLikedSongsList = async () => {
     // Fetched Data
     if (user?.likes) {
       let songs = await data.filter((song) => user.likes.includes(song.track.id));
+      songs.sort((a, b) => a.track.id - b.track.id);
       // List
       likedSongList(songs);
     } else {

@@ -99,7 +99,11 @@ search_input$$.setAttribute('placeholder', placeholder);
 
 search_input$$.addEventListener('input', async (e) => {
   // Location change
-  history.pushState(null, null, '/explore');
+  if (location.pathname !== '/explore') {
+    history.pushState(null, null, '/explore');
+    router();
+  }
+  //
   await fetchSongsBySearch(e.target.value);
   // Hide the cancel button
   e.target.value.length >= 1
