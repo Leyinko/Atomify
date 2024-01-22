@@ -97,7 +97,6 @@ function likeUnlikeSong(e, track) {
   } else {
     addLikeTrack(track);
     e.target.classList.add('like_active');
-    audio$$.setAttribute('queue', true);
   }
   // Visual Update Home on VP
   pushStateHomeRefresh();

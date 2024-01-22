@@ -336,8 +336,15 @@ header {
 
 @media screen and (max-width: 1280px) {
   .header-container {
-    width: 100%;
-    padding: 20px;
+    width: 90%;
+  }
+
+  .app-logo-container {
+    flex: 0 0 12%;
+  }
+
+  #navigation_links {
+    justify-content: space-around;
   }
 
   #navigation_links img {
@@ -352,9 +359,40 @@ header {
     padding-left: 15px;
   }
 
+  #panel_config img {
+    width: 18px;
+  }
+
   .search_container {
-    height: 35px;
+    height: 33px;
+    padding: 10px;
     flex: 0 0 30%;
+  }
+
+  .search_container:focus-within {
+    outline: 1px solid #ffffff70;
+  }
+
+  .search_container img:first-of-type {
+    margin: 0px;
+    margin-right: 5px;
+    width: 16px;
+    opacity: 0.5;
+  }
+
+  .search_container img:last-of-type {
+    width: 20px;
+    opacity: 0.8;
+    visibility: hidden;
+  }
+
+  #search {
+    line-height: 15px;
+    font-size: 0.7rem;
+  }
+
+  #search::placeholder {
+    font-size: 0.7rem;
   }
 
   #modal-config {
@@ -368,4 +406,67 @@ header {
 }
 
 @media screen and (max-width: 601px) {
+  .app-logo-container {
+    display: none;
+  }
+
+  #navigation_links {
+    margin-right: 10px;
+    max-width: 110px;
+    min-width: 50px;
+  }
+
+  #navigation_links img {
+    width: 20px;
+  }
+
+  #navigation_links div a {
+    display: none;
+  }
+
+  #panel_config img {
+    width: 17px;
+  }
+
+  .search_container {
+    height: 28px;
+    padding: 10px;
+    flex: 0 0 35%;
+  }
+
+  .search_container img:first-of-type {
+    margin: 0px;
+    margin-right: 5px;
+    width: 10px;
+    opacity: 0.5;
+  }
+
+  .search_container img:last-of-type {
+    width: 15px;
+    opacity: 0.8;
+    visibility: hidden;
+  }
+
+  .search_container:focus-within {
+    outline: 1px solid #ffffff4d;
+  }
+
+  #search {
+    line-height: 18px;
+    font-size: 0.6rem;
+  }
+
+  #search::placeholder {
+    font-size: 0.6rem;
+  }
+
+  #modal-config {
+    width: 85px;
+    left: -15px;
+    top: 35px;
+  }
+
+  #modal-config h3 {
+    font-size: 0.6rem;
+  }
 }
