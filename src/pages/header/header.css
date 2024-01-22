@@ -57,7 +57,7 @@ header {
 
 #navigation_links div a {
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: white;
   pointer-events: none;
 }
@@ -251,7 +251,7 @@ header {
   width: 100%;
   height: 106%;
   animation: help-pop 0.5s ease-in-out forwards;
-  background-color: var(--help-background);
+  /* background-color: var(--help-background); */
   border-radius: 5px;
 }
 
@@ -259,7 +259,7 @@ header {
   padding: 40px;
   width: 100%;
   height: 34%;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.329);
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.329); */
 }
 
 #help-container p {
@@ -315,7 +315,7 @@ header {
 
 .rec_box {
   position: relative;
-  margin-top: 5px;
+  /* margin-top: 5px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -335,8 +335,12 @@ header {
 /* Responsive */
 
 @media screen and (max-width: 1280px) {
+  .error-box {
+    width: 60%;
+  }
+
   .header-container {
-    width: 90%;
+    width: 95%;
   }
 
   .app-logo-container {
@@ -345,6 +349,7 @@ header {
 
   #navigation_links {
     justify-content: space-around;
+    gap: 16px;
   }
 
   #navigation_links img {
@@ -352,7 +357,7 @@ header {
   }
 
   #navigation_links div a {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 
   #panel_config {
@@ -403,6 +408,48 @@ header {
   #modal-config h3 {
     font-size: 0.7rem;
   }
+
+  .user_box {
+    border: none;
+    /* padding: 10px; */
+    height: 17%;
+  }
+
+  #help-container {
+    margin-top: 100px;
+    /* width: 80%; */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+  }
+
+  #help-container nav {
+    top: 30px;
+    position: relative;
+    flex-wrap: wrap;
+  }
+
+  #help-container p {
+    font-size: 10px;
+  }
+
+  .likes_box {
+    margin-top: 10px;
+    width: 410px;
+    height: 280px;
+  }
+
+  .daily_box {
+    margin-top: 15px;
+    width: 190px;
+    height: 280px;
+  }
+
+  .rec_box {
+    margin-top: -12px;
+    height: 335px;
+    width: 380px;
+  }
 }
 
 @media screen and (max-width: 601px) {
@@ -425,7 +472,7 @@ header {
   }
 
   #panel_config img {
-    width: 17px;
+    width: 19px;
   }
 
   .search_container {
@@ -437,12 +484,12 @@ header {
   .search_container img:first-of-type {
     margin: 0px;
     margin-right: 5px;
-    width: 10px;
+    width: 15px;
     opacity: 0.5;
   }
 
   .search_container img:last-of-type {
-    width: 15px;
+    width: 23px;
     opacity: 0.8;
     visibility: hidden;
   }
@@ -468,5 +515,24 @@ header {
 
   #modal-config h3 {
     font-size: 0.6rem;
+  }
+
+  .likes_box {
+    /* margin-top: -15px; */
+    width: 370px;
+    height: 240px;
+  }
+
+  .daily_box {
+    margin-top: -15px;
+    width: 240px;
+    height: 230px;
+  }
+
+  .rec_box {
+    margin-top: -22px;
+    height: 335px;
+    width: 280px;
+    margin-bottom: 40px;
   }
 }

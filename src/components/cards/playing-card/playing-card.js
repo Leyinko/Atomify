@@ -135,5 +135,8 @@ export function responsivePlayingDistance() {
   const article$$ = document.querySelector('article');
   let dist = article$$.getBoundingClientRect().left;
   let size = playing_container$$.getBoundingClientRect().width;
-  playing_container$$.style.setProperty('--offset-main', `-${Math.floor(dist + size - 90)}px`);
+  // VP Size
+  window.innerWidth < 880
+    ? playing_container$$.style.setProperty('--offset-main', `-${Math.floor(dist + size - 50)}px`)
+    : playing_container$$.style.setProperty('--offset-main', `-${Math.floor(dist + size - 90)}px`);
 }

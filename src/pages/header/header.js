@@ -190,9 +190,15 @@ const panelFunctions = {
     let help_btn$$ = document.querySelectorAll('#panel_config img')[1];
     let article$$ = document.querySelector('#home');
     let help_container$$ = document.querySelector('#help-container');
+    let home_userInfo$$ = document.querySelector('.user-information');
+    let home_userSongs$$ = document.querySelector('#user-songs-section');
+    let current_date$$ = document.querySelector('.current-date');
     // Visibility
     if (help_container$$) {
       help_container$$.remove();
+      home_userSongs$$.classList.remove('blurred');
+      home_userInfo$$.classList.remove('blurred');
+      current_date$$.style.visibility = 'visible';
       // Btn Switch
       help_btn$$.src = config_panel_icons.help;
       return;
@@ -201,6 +207,9 @@ const panelFunctions = {
     if (article$$) {
       // Btn On
       help_btn$$.classList.add('help-active');
+      home_userSongs$$.classList.add('blurred');
+      home_userInfo$$.classList.add('blurred');
+      current_date$$.style.visibility = 'hidden';
       // Btn Switch
       help_btn$$.src = active_general.help;
       // Elements + DOM
