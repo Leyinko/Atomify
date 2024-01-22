@@ -108,7 +108,7 @@ const userAccessGranted = () => {
   let header$$ = document.querySelector('header');
   header$$.style.visibility = 'visible';
   // Start to Explore
-  history.pushState(null, null, '/explore');
+  history.pushState(null, null, '/home');
   router();
 };
 
