@@ -2,7 +2,6 @@ footer {
   width: 100%;
   height: 100px;
   padding: 15px 20px;
-  display: flex;
   justify-content: space-between;
   align-items: center;
   color: white;
@@ -10,6 +9,7 @@ footer {
   user-select: none;
   z-index: 1111111;
   transform: translateY(200px);
+  display: none;
 }
 
 .track-info {

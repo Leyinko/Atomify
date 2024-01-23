@@ -390,6 +390,7 @@ function handleCoverPlayer() {
 // > Visibility Player & Pause/Play Icon
 
 export const popPlayer = () => {
+  FOOTER_ELEMENT$$.style.display = 'flex';
   FOOTER_ELEMENT$$.style.transform = 'none';
   MAIN_ELEMENT$$.style.height = 'calc(100vh - 200px)';
 };
