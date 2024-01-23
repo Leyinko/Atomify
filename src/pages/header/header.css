@@ -319,7 +319,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 15px;
   background-color: var(--black-card);
 }
 
@@ -517,9 +517,23 @@ header {
     font-size: 0.6rem;
   }
 
+  #search_result {
+    padding: 50px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 130px));
+    justify-items: center;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .user_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .likes_box {
     /* margin-top: -15px; */
-    width: 370px;
+    width: 350px;
     height: 240px;
   }
 
@@ -532,7 +546,7 @@ header {
   .rec_box {
     margin-top: -22px;
     height: 335px;
-    width: 280px;
+    width: 300px;
     margin-bottom: 40px;
   }
 }

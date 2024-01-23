@@ -40,3 +40,16 @@
     transform: translateY(3px);
   }
 }
+
+/* Responsive */
+
+@media screen and (max-width: 1280px) {
+}
+
+@media screen and (max-width: 601px) {
+  .global_card {
+    width: 130px;
+    padding: 10px;
+    border-radius: 10px;
+  }
+}

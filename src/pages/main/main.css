@@ -70,6 +70,10 @@ main {
 }
 
 @media screen and (max-width: 1280px) {
+  .loading_logo {
+    max-width: 20%;
+  }
+
   main {
     padding: 0px 10px;
   }
@@ -82,9 +86,13 @@ main {
 }
 
 @media screen and (max-width: 601px) {
+  .loading_logo {
+    max-width: 40%;
+  }
+
   main {
     width: 100%;
-    padding: 0px 20px;
+    padding: 0px;
   }
 
   #playing_container.show-playing-card {

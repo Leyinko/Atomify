@@ -1,4 +1,5 @@
 footer {
+  width: 100%;
   height: 100px;
   padding: 15px 20px;
   display: flex;
@@ -222,4 +223,12 @@ footer input[type='range']::-moz-range-thumb {
   height: 0.8rem;
   width: 0.8rem;
   border-radius: 50%;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 1280px) {
+}
+
+@media screen and (max-width: 601px) {
 }
