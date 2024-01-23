@@ -26,7 +26,7 @@ export const globalCardHandlers = () => {
       // Play btn
       let play = e.target;
       // Phone & Tablets
-      if (window.innerWidth < 900 && play) {
+      if (window.innerWidth < 1100 && play) {
         // Handle Play
         await playCard(e);
         // Selected / Playing
