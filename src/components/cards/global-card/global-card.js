@@ -25,7 +25,14 @@ export const globalCardHandlers = () => {
     card.addEventListener('click', async (e) => {
       // Play btn
       let play = e.target;
-      // console.log(play);
+      // Phone & Tablets
+      if (window.innerWidth < 900 && play) {
+        // Handle Play
+        await playCard(e);
+        // Selected / Playing
+        highlightGlobalPlayingCard();
+      }
+      // Desktop
       if (play && e.detail === 2) {
         // Handle Play
         await playCard(e);
