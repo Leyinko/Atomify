@@ -4,6 +4,7 @@ import { cover_sizes, player_icons, track_info_icon } from '../../../public/asse
 import { countGenreSeconds, getActiveUserData, setUserData } from '../../data/local-storage-mock';
 import { ascendingOrderLikeTracks, getIndexOfTrackInLikeQueue, playMusicQueue } from '../../pages/nav/home/home';
 import './player.css';
+import { highlightGlobalPlayingCard, playCard } from '../cards/global-card/global-card.js';
 
 // > DOM Creation & Insertion
 
@@ -424,3 +425,14 @@ export function getLikedQueueSongs() {
   user.likes ? user.likes.forEach((song) => likedQueueIDs.push(song)) : null;
   likedQueueIDs = ascendingOrderLikeTracks(likedQueueIDs);
 }
+
+// > Touch Handler to Play for all App
+
+export const clickOnTouch = async (e, play = e.target) => {
+  if (window.innerWidth < 1280 && play) {
+    // Handle Play
+    await playCard(e);
+    // Selected / Playing
+    highlightGlobalPlayingCard();
+  }
+};

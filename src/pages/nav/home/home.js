@@ -6,7 +6,13 @@ import {
   fetchTrackToPlay,
 } from '../../../../public/api/fetch.js';
 import { deleteLikeTrack, getActiveUserData, setUserData } from '../../../data/local-storage-mock';
-import { getLikedQueueSongs, getRandomTrackID, likedQueueIDs, popPlayer } from '../../../components/player/player';
+import {
+  clickOnTouch,
+  getLikedQueueSongs,
+  getRandomTrackID,
+  likedQueueIDs,
+  popPlayer,
+} from '../../../components/player/player';
 import {
   checkIfLiked,
   popPlayingCard,
@@ -226,6 +232,8 @@ export const likedSongList = async (songs) => {
       element.addEventListener('click', (e) => {
         // Get Index of Target in queue
         let targetIndex = getIndexOfTrackInLikeQueue(e.target.id);
+        // Phone & Tablets
+        clickOnTouch(e);
         // Play Track
         if (e.detail === 2) {
           playMusicQueue(targetIndex);
@@ -350,6 +358,8 @@ export const playTrackFromHome = async (e) => {
   const playing_container$$ = document.querySelector('#playing_container');
   // Select Parent Card Element
   let track = await e.target.id;
+  // Phone & Tablets
+  clickOnTouch(e);
   // Play on Double Click
   if (e.detail === 2) {
     // Play when click on Card ctrl Play

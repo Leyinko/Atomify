@@ -1,6 +1,6 @@
 import { fetchTrackToPlay } from '../../../../public/api/fetch';
 import { checkIfLiked, popPlayingCard, responsivePlayingDistance } from '../playing-card/playing-card';
-import { likedQueueIDs, popPlayer } from '../../player/player';
+import { clickOnTouch, likedQueueIDs, popPlayer } from '../../player/player';
 import './global-card.css';
 
 // > Global Explore Card
@@ -26,12 +26,7 @@ export const globalCardHandlers = () => {
       // Play btn
       let play = e.target;
       // Phone & Tablets
-      if (window.innerWidth < 1280 && play) {
-        // Handle Play
-        await playCard(e);
-        // Selected / Playing
-        highlightGlobalPlayingCard();
-      }
+      clickOnTouch(e, play);
       // Desktop
       if (play && e.detail === 2) {
         // Handle Play
@@ -60,7 +55,7 @@ export const highlightGlobalPlayingCard = () => {
 
 // > Play
 
-const playCard = async (e) => {
+export const playCard = async (e) => {
   // Elements
   const audio$$ = document.querySelector('audio');
   const playing_container$$ = document.querySelector('#playing_container');
