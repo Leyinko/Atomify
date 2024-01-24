@@ -147,7 +147,7 @@ footer {
 }
 
 .time-range-container {
-  max-width: 30vw;
+  max-width: 30svw;
   position: absolute;
   bottom: 15px;
   display: flex;
@@ -162,7 +162,7 @@ footer {
 }
 
 #range-track {
-  width: 30vw;
+  width: 30svw;
   height: 3px;
   border-radius: 5px;
 }

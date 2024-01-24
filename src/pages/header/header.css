@@ -453,12 +453,16 @@ header {
 }
 
 @media screen and (max-width: 601px) {
+  .header-container {
+    width: 85%;
+  }
+
   .app-logo-container {
     display: none;
   }
 
   #navigation_links {
-    margin-right: 10px;
+    margin-right: 20px;
     max-width: 110px;
     min-width: 50px;
   }
@@ -518,7 +522,7 @@ header {
   }
 
   #search_result {
-    padding: 50px;
+    padding: 35px;
     grid-template-columns: repeat(auto-fill, minmax(100px, 130px));
     justify-items: center;
     align-items: center;

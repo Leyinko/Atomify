@@ -392,7 +392,7 @@ function handleCoverPlayer() {
 export const popPlayer = () => {
   FOOTER_ELEMENT$$.style.display = 'flex';
   FOOTER_ELEMENT$$.style.transform = 'none';
-  MAIN_ELEMENT$$.style.height = 'calc(100vh - 200px)';
+  MAIN_ELEMENT$$.style.height = 'calc(100svh - 200px)';
 };
 
 const playPauseIconUpdate = () => {
