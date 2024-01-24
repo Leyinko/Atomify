@@ -9,6 +9,7 @@ main {
   justify-content: flex-start;
   gap: 6.25rem;
   transition: height 0.2s ease-in-out;
+  overflow: hidden;
 }
 
 #playing_container {

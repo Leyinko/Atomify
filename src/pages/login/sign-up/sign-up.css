@@ -224,7 +224,6 @@
 
 @media screen and (max-width: 1280px) {
   #signup {
-    justify-content: flex-start;
     gap: 1rem;
   }
 
@@ -285,6 +284,10 @@
     width: 70%;
     font-size: 0.7rem;
     text-align: left;
+  }
+
+  #signup_container button {
+    width: 190px;
   }
 
   .information-text {

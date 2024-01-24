@@ -93,4 +93,24 @@
 }
 
 @media screen and (max-width: 601px) {
+  #login_container input {
+    width: 200px;
+    width: 200px;
+    margin-bottom: 5px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 0.7rem;
+  }
+
+  #login_container button {
+    width: 190px;
+  }
+
+  #login_container {
+    align-items: center;
+  }
+
+  #login_container label {
+    align-self: flex-start;
+  }
 }
