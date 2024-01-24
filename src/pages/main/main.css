@@ -76,13 +76,20 @@ main {
   }
 
   main {
+    width: 100%;
+    /* padding: 0px; */
     padding: 0px 10px;
+    overflow: hidden;
   }
 
   #playing_container {
     max-width: 230px;
     height: 100%;
     max-height: 330px;
+  }
+
+  #playing_container.show-playing-card {
+    margin: 20px;
   }
 }
 
@@ -97,9 +104,6 @@ main {
   }
 
   #playing_container.show-playing-card {
-    /* right: 20px; */
     margin: 20px;
-    display: block;
-    animation: none;
   }
 }

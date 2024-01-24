@@ -90,6 +90,7 @@ header {
 
 .search_container:focus-within {
   outline: 1px solid #ffffffc4;
+  border-radius: 25px;
 }
 
 .search_container img:first-of-type {
