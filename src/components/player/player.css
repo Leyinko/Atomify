@@ -260,6 +260,7 @@ footer input[type='range']::-moz-range-thumb {
 
   .time-range-container {
     max-width: 40svw;
+    right: 0px;
   }
 
   .track-info h4 {
