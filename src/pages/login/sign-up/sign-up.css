@@ -237,6 +237,10 @@
     width: 100px;
   }
 
+  #signup_container {
+    gap: 0.4rem;
+  }
+
   #signup_container label {
     width: 75%;
     font-size: 0.7rem;
@@ -248,6 +252,11 @@
     left: -10px;
     padding: 20px;
     width: 350px;
+  }
+
+  #category_selection_account {
+    margin: 15px 0px 0px 0px;
+    gap: 2.4rem;
   }
 
   #signup_container button {
