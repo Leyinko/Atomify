@@ -152,6 +152,7 @@ footer {
   bottom: 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5125rem;
 }
 
@@ -253,14 +254,9 @@ footer input[type='range']::-moz-range-thumb {
 
   .reproduction {
     position: absolute;
-    right: 20px;
-    width: 40%;
+    right: 40px;
+    width: 40svw;
     gap: 0.7rem;
-  }
-
-  .time-range-container {
-    max-width: 40svw;
-    right: 0px;
   }
 
   .track-info h4 {
