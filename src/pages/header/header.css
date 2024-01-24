@@ -401,6 +401,12 @@ header {
     font-size: 0.7rem;
   }
 
+  #search_result {
+    padding: 55px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 130px));
+    column-gap: 70px;
+  }
+
   #modal-config {
     left: -75px;
     top: 45px;
