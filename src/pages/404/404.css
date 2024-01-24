@@ -101,3 +101,22 @@
     font-size: 0.7rem;
   }
 }
+
+@media screen and (max-width: 601px) {
+  #error {
+    width: 100svw;
+    height: 100svh;
+    color: white;
+    user-select: none;
+  }
+
+  #error::after {
+    position: absolute;
+    content: '';
+    min-width: 300px;
+    width: 100%;
+    max-width: 300px;
+    height: 100%;
+    margin-top: 0px;
+  }
+}
