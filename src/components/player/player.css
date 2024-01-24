@@ -253,7 +253,8 @@ footer input[type='range']::-moz-range-thumb {
 
   .reproduction {
     position: absolute;
-    right: 50px;
+    right: 20px;
+    width: 40%;
     gap: 0.7rem;
   }
 
