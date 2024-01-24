@@ -239,7 +239,7 @@ footer input[type='range']::-moz-range-thumb {
 
 @media screen and (max-width: 601px) {
   #playing_cover {
-    width: 45px;
+    width: 60px;
   }
 
   #playing_cover_zoom {
@@ -253,8 +253,8 @@ footer input[type='range']::-moz-range-thumb {
 
   .reproduction {
     position: absolute;
-    right: 30px;
-    /* left: 50%; */
+    right: 50px;
+    gap: 0.7rem;
   }
 
   .time-range-container {
@@ -268,5 +268,9 @@ footer input[type='range']::-moz-range-thumb {
 
   .track-info span {
     font-size: 8px;
+  }
+
+  #develop-cover {
+    display: none;
   }
 }
