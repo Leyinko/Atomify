@@ -402,9 +402,9 @@ header {
   }
 
   #search_result {
-    padding: 55px;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 130px));
-    column-gap: 70px;
+    padding: 30px 65px 30px 45px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 100px));
+    column-gap: 60px;
   }
 
   #modal-config {
@@ -433,7 +433,7 @@ header {
 
   #help-container nav {
     padding-bottom: 30px;
-    top: 40px;
+    top: 25px;
     position: relative;
     flex-wrap: wrap;
   }
