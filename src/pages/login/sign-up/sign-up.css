@@ -223,8 +223,13 @@
 /* Responsive */
 
 @media screen and (max-width: 1280px) {
+  #signup {
+    gap: 1rem;
+  }
+
   #signup > img:first-child {
     width: 85px;
+    margin-bottom: 30px;
   }
 
   #category_selection_account > img {

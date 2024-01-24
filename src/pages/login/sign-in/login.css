@@ -78,3 +78,19 @@
 #login_container span a {
   color: white;
 }
+
+/* Responsive */
+
+@media screen and (max-width: 1280px) {
+  #login {
+    gap: 1.5rem;
+  }
+
+  #login img {
+    width: 150px;
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 601px) {
+}
