@@ -412,11 +412,12 @@ header {
 
   .user_box {
     border: none;
-    /* padding: 10px; */
+    padding: 10px;
     height: 17%;
   }
 
   #help-container {
+    /* padding: 40px; */
     margin-top: 100px;
     /* width: 80%; */
     flex-wrap: wrap;
@@ -425,7 +426,8 @@ header {
   }
 
   #help-container nav {
-    top: 30px;
+    padding-bottom: 30px;
+    top: 40px;
     position: relative;
     flex-wrap: wrap;
   }
@@ -436,20 +438,20 @@ header {
 
   .likes_box {
     margin-top: 10px;
-    width: 410px;
+    width: 440px;
     height: 280px;
   }
 
   .daily_box {
-    margin-top: 15px;
-    width: 190px;
+    margin-top: 10px;
+    width: 290px;
     height: 280px;
   }
 
   .rec_box {
     margin-top: -12px;
     height: 335px;
-    width: 380px;
+    width: 460px;
   }
 }
 
