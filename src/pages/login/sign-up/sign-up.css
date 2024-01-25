@@ -286,7 +286,7 @@
   }
 
   #category_selection_account > img {
-    margin: 0px 7px;
+    margin: 3px;
     width: 80px;
   }
 
@@ -299,7 +299,7 @@
   }
 
   #signup_container label {
-    width: 65%;
+    width: 70%;
     font-size: 0.65rem;
     text-align: left;
   }
