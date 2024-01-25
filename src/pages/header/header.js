@@ -281,16 +281,16 @@ const text_information = {
   rec: `
   Daily genre-based recommendations.
  
-  The algorithm dynamically updates the flag in the top right of the recommendations box to showcase the Genre based on the account's most-listened genre.
+  The algorithm dynamically updates the flag at the top of the recommendations box to showcase the account's most-listened genre.
 
   Despite flag changes, recommendations align with the genre indicated by the flag at the time of the reset.
  
-  R : Rocky
-  G : Groovy
-  A : Alternative
-  A+ : ++
+  R : Rock (Green)
+  G : Groove (Pink)
+  A : Alternative (Orange)
+  A+ : Electronic/Pop (Purple)
   
-  *Reset your algorithm anytime via the Configuration panel.`,
+  *Reset your algorithm anytime via the configuration panel`,
 };
 
 // > Configuration Modal Buttons
