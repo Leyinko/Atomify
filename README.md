@@ -2,7 +2,7 @@
 
 ###### (Async RTC Project)
 
-<img style="display:block; margin: 0 auto;" width="600" src="https://res.cloudinary.com/drft9abh4/image/upload/v1706197909/Atomify-Responsive-BW_esz3sd.png">
+<img style="display:block; margin: 0 auto; user-select: none" width="800" src="https://res.cloudinary.com/drft9abh4/image/upload/v1706205508/Atomify-Responsive_xbm95y.png">
 <br>
 
 ## Features
@@ -13,13 +13,13 @@ Create a personalized account locally, ensuring the secure storage of profile pr
 
 ### Music Genre Algorithm
 
-Choose a track that represents a genre to tailor your initial daily recommendations. The algorithm adapts to your preferences, offering a customized and evolving music experience:
+Choose a track that represents a genre to tailor your initial daily recommendations. The algorithm adapts to your preferences, offering a customized and evolving music experience :
 
 **Recommendations will be influenced by the genre you listen to the most!**
 
 ### Profile and Stats
 
-Change profile settings, set favorite songs, view Daily Tracks and personalized recommendations, and monitor your PR and PC.
+Change profile picture, set favorite songs, view Daily and personalized recommendations Tracks, and monitor your PR and PC.
 
 **Higher PR rates will indicate more popular and mainstream choices, while lower rates will showcase a more unique and distinctive taste.**
 
@@ -29,9 +29,9 @@ Explore a curated list of 100 tracks, selecting songs that resonate with your ev
 
 ### Player and Playing Floating Card
 
-Use the integrated player to play, shuffle, and repeat songs. The floating Playing Card allows you to sing along, like the song, or redirect to Spotify to add it to your playlist.
+Use the integrated player to play, shuffle, and repeat songs. The floating Playing Card allows you to sing along, like the song, or redirect to Spotify to add it to your Spotify playlist.
 
-###### Check the Help section on the website for more information.
+###### Check the Help section on the website for more information about the App functionality.
 
 <br>
 
