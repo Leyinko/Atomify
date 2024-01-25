@@ -106,6 +106,14 @@
 /* Responsive */
 
 @media screen and (max-width: 1280px) {
+  .playing_card_info h4 {
+    font-size: 11px;
+  }
+
+  .lyrics-container {
+    padding: 20px 30px;
+    height: 78%;
+  }
 }
 
 @media screen and (max-width: 601px) {
