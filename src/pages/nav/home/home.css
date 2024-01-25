@@ -439,6 +439,21 @@ ul {
     width: 100px;
   }
 
+  #profile-pictures-selection {
+    width: 170px;
+    top: 10px;
+    left: 35px;
+    padding: 10px;
+  }
+
+  .confirm-picture {
+    position: absolute;
+    /* right: -10px; */
+    top: unset;
+    bottom: -10px;
+    width: 20px;
+  }
+
   #user-songs-section {
     width: 80%;
     gap: 1rem;
