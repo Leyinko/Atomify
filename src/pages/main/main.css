@@ -103,6 +103,12 @@ main {
     padding: 0px;
   }
 
+  #playing_container {
+    max-width: 100px;
+    height: 100%;
+    max-height: 240px;
+  }
+
   #playing_container.show-playing-card {
     margin: 20px;
   }

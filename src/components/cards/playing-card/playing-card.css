@@ -102,3 +102,36 @@
   height: 0px;
   background-color: rgba(247, 247, 247, 0.24);
 }
+
+/* Responsive */
+
+@media screen and (max-width: 1280px) {
+}
+
+@media screen and (max-width: 601px) {
+  .playing_card {
+    gap: 0.5rem;
+  }
+
+  .playing_card > img {
+    min-width: 30%;
+    max-width: 50%;
+  }
+
+  #playing_card_ctrls {
+    gap: 22px;
+  }
+
+  #playing_card_ctrls img {
+    width: 16px;
+  }
+
+  .lyrics-container {
+    height: 78%;
+  }
+
+  .lyrics-container span {
+    font-size: 0.6rem;
+    line-height: 1.8rem;
+  }
+}

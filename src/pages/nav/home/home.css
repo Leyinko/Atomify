@@ -420,6 +420,10 @@ ul {
 }
 
 @media screen and (max-width: 601px) {
+  .current-date {
+    font-size: 8px;
+  }
+
   #picture-container {
     left: -75px;
     top: -10px;
@@ -432,7 +436,7 @@ ul {
   }
 
   .user-information {
-    width: 50%;
+    width: 40%;
   }
 
   .user-information > h1 {
@@ -449,10 +453,10 @@ ul {
   }
 
   #play_liked_playlist {
-    right: -110px;
-    padding: 13px;
-    width: 50px;
-    height: 50px;
+    right: -50px;
+    padding: 9px;
+    width: 35px;
+    height: 35px;
   }
 
   ul {
