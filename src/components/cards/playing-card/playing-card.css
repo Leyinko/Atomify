@@ -114,8 +114,8 @@
   }
 
   .playing_card > img {
-    min-width: 30%;
-    max-width: 50%;
+    min-width: 40%;
+    max-width: 60%;
   }
 
   #playing_card_ctrls {
@@ -123,10 +123,15 @@
   }
 
   #playing_card_ctrls img {
-    width: 16px;
+    width: 17px;
+  }
+
+  .playing_card_info h4 {
+    font-size: 11px;
   }
 
   .lyrics-container {
+    padding: 20px 20px;
     height: 78%;
   }
 

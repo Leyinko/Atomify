@@ -267,8 +267,4 @@ footer input[type='range']::-moz-range-thumb {
   .track-info span {
     font-size: 8px;
   }
-
-  #develop-cover {
-    display: none;
-  }
 }

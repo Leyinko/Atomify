@@ -25,7 +25,7 @@ export const playing_card$$ = (id, img, alt, title, artist, href, bg_color) => {
   `;
   // DOM Insertion & BG Color + Transparency
   document.querySelector('#playing_container').innerHTML = playing_card;
-  document.querySelector('aside').style.backgroundColor = `${bg_color}89`;
+  document.querySelector('aside').style.backgroundColor = `${bg_color}D9`;
   // Handlers
   playingCardHandlers();
 };

@@ -358,6 +358,11 @@ ul {
 /*  RESPONSIVE */
 
 @media screen and (max-width: 1280px) {
+  .current-date {
+    margin-top: 10px;
+    font-size: 9px;
+  }
+
   article#home {
     height: 100%;
     overflow: scroll;
@@ -420,6 +425,10 @@ ul {
 }
 
 @media screen and (max-width: 601px) {
+  article#home {
+    overflow-x: hidden;
+  }
+
   .current-date {
     font-size: 8px;
   }

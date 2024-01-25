@@ -492,9 +492,9 @@ header {
   }
 
   .search_container {
-    height: 28px;
+    height: 32px;
     padding: 10px;
-    flex: 0 0 35%;
+    flex: 0 0 40%;
   }
 
   .search_container img:first-of-type {
@@ -521,6 +521,15 @@ header {
 
   #search::placeholder {
     font-size: 0.6rem;
+  }
+
+  #panel_config {
+    margin-left: 10px;
+    gap: 0.7rem;
+  }
+
+  #panel_config img {
+    width: 20px;
   }
 
   #modal-config {
