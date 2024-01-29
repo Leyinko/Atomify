@@ -29,16 +29,15 @@ import './home.css';
 import { pushStateHomeRefresh } from '../../../router/router.js';
 
 export const Home = () => {
-  // Reset Current Article
+  // Reset Container
   document.querySelector('main article').innerHTML = null;
-  // Date
+
   let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   let currentDate = new Date().toLocaleDateString('en-US', options);
-  // Get Active User Data
+
   let user = getActiveUserData();
-  // User Data Fetching & Verification
   loadUserData();
-  // Home content
+
   let home_template$$ = `
   <h3 class="current-date">${currentDate}</h3>
     <div class="user-information">
@@ -70,32 +69,28 @@ export const Home = () => {
 // > Load User Data
 
 const loadUserData = async () => {
-  // Date
   let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   let currentDate = new Date().toLocaleDateString('en-US', options);
-  // ! TEST ZONE FOR ONE MORE DAY
-  // currentDate = currentDate.replace(/\d+/, '13');
-  // ! TEST ZONE FOR ONE MORE DAY
-  // Get Active User Data
+
   let user = getActiveUserData();
-  // Reset/Change User Data (DAILY)
+  // Daily Reset
   if (user.date !== currentDate || !user.date) {
     setUserData(user.id, 'date', currentDate);
     setUserData(user.id, 'daily', getRandomTrackID(100));
     fetchRecommendationsIDS();
   }
-  // Fetch Home Data
+  // Fetch Data
   await fetchLikedSongsList();
   await fetchDailySong();
   await fetchRecommendationsSongs();
-  // Local User Home Data (Injection Handler)
+  // DOM Local
   let checkerInjectOnce = document.querySelector('.playlist-info');
   if (checkerInjectOnce && checkerInjectOnce.childNodes.length === 0) {
     generatePopularityRate();
     generatePredominantCategory();
     profilePictureManager();
   }
-  // Like Playlist
+  // DOM Fetched Data
   playLikePlaylistHandler();
   getLikedQueueSongs();
   highlightPlayingSongFromLikeList();
@@ -104,10 +99,8 @@ const loadUserData = async () => {
 // > Profile Picture
 
 const profilePictureManager = () => {
-  // Element
   let profile_picture_container$$ = document.querySelector('#picture-container');
   let modal_selection$$ = document.querySelector('#profile-pictures-selection');
-  // Modal Toggle Visibility
   profile_picture_container$$.addEventListener('click', () => {
     modal_selection$$.classList.toggle('selection-active');
     // Blur Effect
@@ -119,20 +112,19 @@ const profilePictureManager = () => {
   // Pictures
   let pictures$$ = Object.values(profile_pictures);
   pictures$$.forEach((picture) => {
-    // Element
     let image = document.createElement('img');
     image.className = 'profile-picture-miniature';
     image.src = picture;
-    // DOM
+
     modal_selection$$.appendChild(image);
   });
   // Handlers
   let pictures_selection$$ = document.querySelectorAll('.profile-picture-miniature');
   pictures_selection$$.forEach((picture) => {
     picture.addEventListener('click', () => {
-      // Reset Selections
+      // Selection Toggle
       pictures_selection$$.forEach((picture) => picture.classList.remove('miniature-selected'));
-      // Final Select
+
       picture.classList.toggle('miniature-selected');
     });
   });
@@ -145,28 +137,24 @@ const profilePictureManager = () => {
   modal_selection$$.appendChild(confirm_btn$$);
   // Handler
   confirm_btn$$.addEventListener('click', () => {
-    // Selected Picture
     let newPicture = document.querySelector('.miniature-selected');
-    // Set new Profile Picture
     let user = getActiveUserData();
     if (newPicture) {
       setUserData(user.id, 'profile_picture', newPicture.src);
-      // Refresh
+      // Redirect
       pushStateHomeRefresh();
     }
   });
 };
 
-// > Likes Section
+// > Likes & Scores
 
 const generatePopularityRate = () => {
-  // Elements
   let liked_songs$$ = document.querySelectorAll('.liked_song_li');
   let playlist_info$$ = document.querySelector('.playlist-info');
-  const user = getActiveUserData();
-  // Likes counter
   let counter_likes$$ = document.createElement('span');
-  // Condition
+  const user = getActiveUserData();
+  //
   if (!user.likes) {
     counter_likes$$.textContent = `0 song liked - `;
   } else if (user.likes.length <= 1) {
@@ -176,7 +164,7 @@ const generatePopularityRate = () => {
   }
 
   playlist_info$$.appendChild(counter_likes$$);
-  // Calculate Popularity
+  // PR
   let rates = [];
   liked_songs$$.forEach((song) => rates.push(Number(song.getAttribute('popularity'))));
   let sum = rates.reduce((acc, next) => acc + next, 0);
@@ -184,22 +172,21 @@ const generatePopularityRate = () => {
   // DOM
   let ratio$$ = document.createElement('span');
   playlist_info$$.appendChild(ratio$$);
-  // Conditions
+  // Output
   percentage === 'NaN % (PR) - ' ? (percentage = 'Score not available yet.') : percentage;
   ratio$$.textContent = `${percentage}`;
 };
 
 const generatePredominantCategory = () => {
-  // Elements
   let liked_songs$$ = document.querySelectorAll('.liked_song_li');
   let playlist_info$$ = document.querySelector('.playlist-info');
-  // Likes counter
+  //
   let final_category$$ = document.createElement('span');
   if (liked_songs$$.length === 0) {
     return;
   }
   playlist_info$$.appendChild(final_category$$);
-  // Calculate Predominant Genre
+  // PC
   let categories = {};
   liked_songs$$.forEach((track) => {
     let genre = track.getAttribute('genre');
@@ -209,47 +196,42 @@ const generatePredominantCategory = () => {
       categories[genre] = 1;
     }
   });
-  // Check highest genre
+  // Evaluate
   let highest = Object.keys(categories).reduce((a, b) => (categories[a] > categories[b] ? a : b));
-  // Conditions
+  // Output
   final_category$$.textContent = `${highest} (PC)`;
 };
 
 export const likedSongList = async (songs) => {
-  //DOM
   const list = document.querySelector('#liked-list');
   if (list && list.childNodes.length === 0) {
     songs.forEach((song) => {
       list.innerHTML += likedSongListElement$$(song);
     });
-    // No Liked Songs Message
+    // Empty
     if (list.children.length === 0) {
       noLikedSongsMessage$$();
     }
-    // LI Handlers
+    // Handlers
     const list_elements$$ = document.querySelectorAll('.liked_song_li');
     list_elements$$.forEach((element) => {
       element.addEventListener('click', (e) => {
-        // Get Index of Target in queue
         let targetIndex = getIndexOfTrackInLikeQueue(e.target.id);
         // Phone & Tablets
         clickOnTouch(e);
-        // Play Track
+        // Desktop
         if (e.detail === 2) {
           playMusicQueue(targetIndex);
-          // Tag as Queue
           document.querySelector('audio').setAttribute('queue', true);
         }
       });
     });
-    // Delete Like Btn Handlers
+    // Delete Button Handler
     const delete_like_buttons$$ = document.querySelectorAll('.liked_song_li img:last-of-type');
     delete_like_buttons$$.forEach((btn) => {
       btn.addEventListener('click', (e) => {
         let target = e.target.parentElement.id;
-        // Delete & Refresh/Update Playing card
-        updateLikeIconFromPlayingCard(target);
-        // Remove Listening Queue Attribute if deleted
+        updateLikeIconOnDeleteFromPlayingCard(target);
         document.querySelector('audio').removeAttribute('queue');
       });
     });
@@ -257,14 +239,11 @@ export const likedSongList = async (songs) => {
 };
 
 export const noLikedSongsMessage$$ = () => {
-  // Element
   const list = document.querySelector('#liked-list');
-  // DOM
   if (list) {
     let empty_likes$$ = document.createElement('span');
     empty_likes$$.className = 'empty-likes';
     empty_likes$$.textContent = 'No songs liked yet.';
-
     if (list.children.length === 0) {
       list.appendChild(empty_likes$$);
     } else {
@@ -305,23 +284,21 @@ export const highlightPlayingSongFromLikeList = () => {
   });
 };
 
-// > Play Like Playlist
+// > Play
 
 const playLikePlaylistHandler = () => {
-  // Elements
   let play_like_btn$$ = document.querySelector('#play_liked_playlist');
   const likedSongs = document.querySelectorAll('#liked-list li');
   const audio$$ = document.querySelector('audio');
   // Handler
   if (play_like_btn$$) {
     play_like_btn$$.addEventListener('click', (e) => {
-      // Play/Pause if queue song
+      // Queue
       if (audio$$.getAttribute('queue')) {
         !audio$$.paused ? audio$$.pause() : audio$$.play();
       } else if (likedSongs.length > 0) {
-        // Play from beginning
+        // [0]
         playMusicQueue(0);
-        // Tag as Queue
         audio$$.setAttribute('queue', true);
       } else {
         e.preventDefault();
@@ -330,59 +307,51 @@ const playLikePlaylistHandler = () => {
   }
 };
 
+// Queue Play
+
 export const playMusicQueue = async (index) => {
-  // Elements
   const audio$$ = document.querySelector('#audio');
   const playing_container$$ = document.querySelector('#playing_container');
-  // Check Queue Liked
   let currentSong = likedQueueIDs[index];
-  // Played From Like
   if (currentSong) {
+    // Play
     await fetchTrackToPlay(currentSong);
     audio$$.play();
-    // Player (One time)
+    // Visual
     playing_container$$.style.display !== 'block' ? popPlayer() : null;
-    // Playing Card
-    checkIfLiked();
     popPlayingCard(playing_container$$);
-    // Playing Card Infos
     checkIfLiked();
   }
 };
 
-// > Play Track / Update Like Playing Card
+// Home Play
 
 export const playTrackFromHome = async (e) => {
-  // Elements
   const audio$$ = document.querySelector('audio');
   const playing_container$$ = document.querySelector('#playing_container');
-  // Select Parent Card Element
   let track = await e.target.id;
   // Phone & Tablets
   clickOnTouch(e);
-  // Play on Double Click
+  // Desktop
   if (e.detail === 2) {
-    // Play when click on Card ctrl Play
+    // Play
     await fetchTrackToPlay(track);
     audio$$.play();
-    // Player (One time)
+    // Visual
     playing_container$$.style.display !== 'block' ? popPlayer() : null;
-    // Playing Card Infos
     checkIfLiked();
     popPlayingCard(playing_container$$);
     responsivePlayingDistance();
   }
 };
 
-const updateLikeIconFromPlayingCard = (target) => {
-  // Elements
+const updateLikeIconOnDeleteFromPlayingCard = (target) => {
   const playingContainer$$ = document.querySelector('.playing_card');
   const likeBtn$$ = document.querySelector('#playing_card_ctrls img[alt*="like"]');
-  // Condition
   if (playingContainer$$ && playingContainer$$.getAttribute('id') === target) {
     likeBtn$$.classList.remove('like_active');
   }
-  // Delete & Refresh Anyway On Click
+  // Delete & Redirect
   deleteLikeTrack(target);
   pushStateHomeRefresh();
 };
@@ -390,22 +359,19 @@ const updateLikeIconFromPlayingCard = (target) => {
 // > Daily Song
 
 export const generateDailyTrack = (daily) => {
-  // Elements
   let daily_container$$ = document.querySelector('.daily-track');
   let user = getActiveUserData();
-  // User Daily ID
   if (daily_container$$) {
     if (!user.daily) {
       daily_container$$.id = `${daily.track.id}`;
     } else {
       daily_container$$.id = user.daily;
     }
-    // Track Info
+
     daily_container$$.innerHTML = dailyTemplate$$(daily);
     // Handler
     daily_container$$.addEventListener('click', (e) => {
       playTrackFromHome(e);
-      // Tag as NOT from queue
       document.querySelector('audio').removeAttribute('queue');
     });
   }
@@ -422,12 +388,10 @@ const dailyTemplate$$ = (song) => {
 // > Recommendations Song
 
 export const generateRecommendationsSongs$$ = (recommendations) => {
-  // Elements
   let recommendations_ul$$ = document.querySelector('#recommendations-list');
   let recommendations_cards$$ = document.querySelectorAll('#recommendations-list div');
   if (recommendations_ul$$) {
     if (recommendations_cards$$.length === 0) {
-      // DOM
       recommendations.forEach((song) => {
         recommendations_ul$$.innerHTML += recommendationsTemplate$$(
           song.track.id,
@@ -440,7 +404,6 @@ export const generateRecommendationsSongs$$ = (recommendations) => {
       rec_cards$$.forEach((card) => {
         card.addEventListener('click', (e) => {
           playTrackFromHome(e);
-          // Tag as NOT from queue
           document.querySelector('audio').removeAttribute('queue');
         });
       });
@@ -455,6 +418,8 @@ const recommendationsTemplate$$ = (id, img, alt) => {
   </div>
   `;
 };
+
+// > Category Flags
 
 const recommendationsFlag$$ = (genre) => {
   switch (genre) {

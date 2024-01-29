@@ -2,19 +2,15 @@ import { wrongPassword, wrongUser } from '../pages/login/sign-in/login';
 import { emailAlreadyTaken, fadeOut } from '../pages/login/sign-up/sign-up';
 import { pushStateHomeRefresh, router } from '../router/router';
 
-// > Register New User (/signup)
+// > Register (/signup)
 
 export const postRegistration = (user) => {
   if (checkAvailableEmail(user)) {
-    // Retrieve Users
     let getUsers = localStorage.getItem('users');
-    // Parse the existing data
     const existingData = getUsers ? JSON.parse(getUsers) : [];
-    // Combined Data
+    // Data
     existingData.push(user);
-    // Convert back to String
     const combinedDataString = JSON.stringify(existingData);
-    // Store the updated string back in localStorage
     localStorage.setItem('users', combinedDataString);
     // Redirect
     accountCreatedWithSuccessLS();
@@ -25,9 +21,8 @@ export const postRegistration = (user) => {
 
 export const checkAvailableEmail = (created) => {
   let isEmailAvailable;
-  // Retrieve Users
   let getUsers = JSON.parse(localStorage.getItem('users'));
-  // Checks for Available Email / First E-mail in DDBB
+  // Data
   if (getUsers) {
     getUsers.forEach((user) => {
       if (user.email === created.email) {
@@ -39,21 +34,17 @@ export const checkAvailableEmail = (created) => {
   } else {
     isEmailAvailable = true;
   }
-  //
   return isEmailAvailable;
 };
 
 const accountCreatedWithSuccessLS = () => {
-  // Elements
   let preview_audio$$ = document.querySelector('#category_selection_account audio');
   let article_signup$$ = document.querySelector('#signup');
   let logo_img$$ = article_signup$$.children[0];
-
-  // Reset Article
+  // Reset
   preview_audio$$.removeEventListener('timeupdate', fadeOut);
   article_signup$$.children[1].remove();
   article_signup$$.children[0].remove();
-
   // Message
   const creation_message_container$$ = document.createElement('div');
   creation_message_container$$.className = 'creation-container-message';
@@ -61,26 +52,23 @@ const accountCreatedWithSuccessLS = () => {
   let success$$ = document.createElement('span');
   success$$.innerText = `Account created successfully`;
 
-  // Appending Elements
   article_signup$$.append(logo_img$$, creation_message_container$$);
   creation_message_container$$.appendChild(success$$);
 
-  // Redirect to Login page
+  // Redirect
   setTimeout(() => {
     history.pushState(null, null, '/login');
     router();
   }, 3000);
 };
 
-// > Connection to Account (/login)
+// > Connection (/login)
 
 export const userAuthentication = (email, password) => {
   let exists;
-  // Retrieve Users
   let getUsers = JSON.parse(localStorage.getItem('users')) || [];
-  // Retrieve Target User
   let user = getUsers.find((user) => user.email === email);
-  // Check for Existing user
+  // Data
   !user ? (exists = false) : (exists = true);
   // Pass Data
   return checkLoginData([exists, user], password);
@@ -92,18 +80,15 @@ export const checkLoginData = ([exists, user], password) => {
   } else if (exists && user.password !== password) {
     wrongPassword();
   } else if (exists && user.password === password) {
-    // "Token" granted at connection
+    // "Token"
     setUserData(user.id, 'status', 'online');
-    // ! TEST AREA usersTestLS();
-    // Redirect /home
+    // Redirect
     userAccessGranted();
   }
 };
 
 const userAccessGranted = () => {
-  // Reset Current Article
   document.querySelector('main article').innerHTML = null;
-  // Initial Launching (Temporal)
   let header$$ = document.querySelector('header');
   header$$.style.visibility = 'visible';
   // Start to Explore
@@ -114,69 +99,58 @@ const userAccessGranted = () => {
 // > Getting/Setting User Data
 
 export const setUserData = (ID, key, value) => {
-  // Retrieve User
   let getUsers = JSON.parse(localStorage.getItem('users'));
   let user = getUsers.find((user) => user.id === ID);
   // Set Data
   user[key] = value;
-  // Send to LS
   localStorage.setItem('users', JSON.stringify(getUsers));
 };
 
 export const deleteUserData = (ID, key) => {
-  // Retrieve User
   let getUsers = JSON.parse(localStorage.getItem('users'));
   let user = getUsers.find((user) => user.id === ID);
-  // Set Data
+  // Delete Data
   delete user[key];
-  // Send to LS
   localStorage.setItem('users', JSON.stringify(getUsers));
 };
 
 export const getActiveUserData = () => {
-  // Retrieve User
   let getUsers = JSON.parse(localStorage.getItem('users'));
-  //Check User
   const user = getUsers.length === 1 ? getUsers[0] : getUsers.find((user) => user.status === 'online');
   return user;
 };
 
-// > Like Section & Recommendations
+// > User Preferences
 
 export const addLikeTrack = (song) => {
-  // Retrieve User
   let getUsers = JSON.parse(localStorage.getItem('users')) || [];
   let user = getActiveUserData();
-  // Likes
+  // Data
   if (!user.hasOwnProperty('likes')) {
     user.likes = [song];
   } else if (user.likes.includes(song)) return;
   else {
     user.likes.push(song);
   }
-  // Updated User
+  // Updated Data
   const updatedUser = getUsers.map((ls) => (ls.id === user.id ? user : ls));
-  // Send to LS
   localStorage.setItem('users', JSON.stringify(updatedUser));
 };
 
 export const deleteLikeTrack = (song) => {
-  // Retrieve User
   let getUsers = JSON.parse(localStorage.getItem('users')) || [];
   let user = getActiveUserData();
-  // Likes
+  // Data
   user.likes = user.likes.filter((liked) => liked !== song);
-  // Updated User
+  // Updated Data
   const updatedUser = getUsers.map((ls) => (ls.id === user.id ? user : ls));
-  // Send to LS
   localStorage.setItem('users', JSON.stringify(updatedUser));
 };
 
 export const setRecommendations = (array) => {
-  // Retrieve User
   let getUsers = JSON.parse(localStorage.getItem('users')) || [];
   let user = getActiveUserData();
-  // Reset Recommendations
+  // Data
   user.recommendations = [];
   // Recommendations
   array.forEach((id) => {
@@ -186,16 +160,14 @@ export const setRecommendations = (array) => {
       user.recommendations.push(id);
     }
   });
-  // Updated User
+  // Updated Data
   const updatedUser = getUsers.map((ls) => (ls.id === user.id ? user : ls));
-  // Send to LS
   localStorage.setItem('users', JSON.stringify(updatedUser));
 };
 
-// > Recommendations Timestamps & Category Algorithm Update
+// > PC Algorithm
 
 export const countGenreSeconds = (genre) => {
-  // Retrieve User
   let getUsers = JSON.parse(localStorage.getItem('users')) || [];
   let user = getActiveUserData();
   // Conditions
@@ -210,38 +182,34 @@ export const countGenreSeconds = (genre) => {
   } else {
     user.timestamps.A_plus += 0.1;
   }
-  // Updated User
+  // Updated Data
   const updatedUser = getUsers.map((ls) => (ls.id === user.id ? user : ls));
-  // Send to LS
   localStorage.setItem('users', JSON.stringify(updatedUser));
-  // User Category Changes
+  // PC Update
   userCategoryUpdate();
 };
 
 export const resetRecommendationsAlgorithmTimestamps = () => {
-  // Retrieve User
   let getUsers = JSON.parse(localStorage.getItem('users')) || [];
   let user = getActiveUserData();
-  // Reset all values
+  // Data
   for (let key in user.timestamps) {
     user.timestamps[key] = 0;
   }
-  // Updated User
+  // Updated Data
   const updatedUser = getUsers.map((ls) => (ls.id === user.id ? user : ls));
-  // Send to LS
   localStorage.setItem('users', JSON.stringify(updatedUser));
-  // Refresh
+  // Redirect
   pushStateHomeRefresh();
 };
 
 export const userCategoryUpdate = () => {
-  // Retrieve User
   let user = getActiveUserData();
-  // Higher Category Score
+  // Data
   let obj = user.timestamps;
   let highest = Object.keys(obj).reduce((a, b) => (obj[a] > obj[b] ? a : b));
   highest === 'A_plus' ? (highest = 'A+') : null;
-  // Set new Category
+  // Set Data
   setUserData(user.id, 'category', highest);
 };
 
@@ -249,27 +217,26 @@ export const userCategoryUpdate = () => {
 
 export const resetOnlineStatus = () => {
   let getUsers = JSON.parse(localStorage.getItem('users'));
-  // Delete Status
+  // Delete "Token"
   getUsers.forEach((user) => delete user.status);
-  // Send to LS
   localStorage.setItem('users', JSON.stringify(getUsers));
 };
 
-// * ADMIN ZONE & RESET TEST * //
+// // * ADMIN ZONE & RESET TEST * //
 
-// Status Delete
-// deleteUserData('#COTXKYOHFI', 'recommendations');
+// // Status Delete
+// // deleteUserData('#COTXKYOHFI', 'recommendations');
 
-export const usersTestLS = () => {
-  const users = localStorage.getItem('users');
-  console.log(`Users DDBB:`, JSON.parse(users));
-  // console.log(JSON.parse(users)[0].likes);
-};
+// export const usersTestLS = () => {
+//   const users = localStorage.getItem('users');
+//   console.log(`Users DDBB:`, JSON.parse(users));
+//   // console.log(JSON.parse(users)[0].likes);
+// };
 
-// usersTestLS();
+// // usersTestLS();
 
-function clearAllLS() {
-  localStorage.clear();
-}
+// function clearAllLS() {
+//   localStorage.clear();
+// }
 
-// clearAllLS();
+// // clearAllLS();

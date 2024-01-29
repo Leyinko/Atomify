@@ -1,4 +1,3 @@
-import { createCardOnSearch } from '../../src/pages/nav/search/search';
 import { updatePlayerInfo } from '../../src/components/player/player';
 import { playing_card$$ } from '../../src/components/cards/playing-card/playing-card';
 import { cover_sizes } from '../assets_constants';
@@ -11,16 +10,16 @@ import {
   noLikedSongsMessage$$,
 } from '../../src/pages/nav/home/home';
 import { highlightGlobalPlayingCard } from '../../src/components/cards/global-card/global-card';
+import { createCardOnSearch } from '../../src/pages/nav/explore/explore';
 
 // DDBB
 export const DDBB = 'https://spoti-lucafy.vercel.app/api/v1/songs';
 
-// > Play Selected Song
+// > Play Song
 
 export let maxLength = 0;
 
 export const fetchTrackToPlay = async (num) => {
-  // Element
   const audio$$ = document.querySelector('#audio');
   try {
     let response = await fetch(DDBB);
@@ -32,20 +31,19 @@ export const fetchTrackToPlay = async (num) => {
     let song = await data.find((item) => item.track.id === num);
     let audio = await song.track.audio;
     maxLength = data.length;
-    // Min/Max ID Length
     if (num > maxLength) {
       song = data[0];
     }
-    // Pause Audio first
+    // Pause
     if (!audio$$.paused) {
       audio$$.pause();
     }
-    // Set SRC + PlayingID
+    // Set SRC
     audio$$.src !== audio ? (audio$$.src = audio) : null;
     audio$$.setAttribute('playing_track_id', song.track.id);
-    // DOM Player information
+    // Playing Info
     updatePlayerInfo(song);
-    // Playing Card DOM
+    // Card
     playing_card$$(
       song.track.id,
       song.track.images[cover_sizes.medium].url,
@@ -55,22 +53,20 @@ export const fetchTrackToPlay = async (num) => {
       song.track.spotify_url,
       song.track.background_color_card
     );
-    // Lyrics Box
+    // Lyrics
     fetchLyricsPlayingSong(song.track.id);
-    // Highlight Playing Like Song
+    // Highlight
     highlightPlayingSongFromLikeList();
   } catch (error) {
     console.error('Error fetching data:', error);
   }
 };
 
-// > Fetch Search Input (Explore)
+// > Search Input
 
 export const fetchSongsBySearch = async (search) => {
-  // Element
   const loading_logo$$ = document.querySelector('.loading_logo');
   try {
-    // Loading
     loading_logo$$.style.display = 'block';
     //
     let response = await fetch(DDBB);
@@ -84,21 +80,20 @@ export const fetchSongsBySearch = async (search) => {
         song.track.title.toLowerCase().includes(search.toLowerCase()) ||
         song.track.artist.toLowerCase().includes(search.toLowerCase())
     );
-    // DOM Cards
+    // Cards
     await createCardOnSearch(songs);
-    // Search for Playing Track
+    // Highlight
     highlightGlobalPlayingCard();
-    // Loaded
+    //
     loading_logo$$.style.display = 'none';
   } catch (error) {
     console.error('Error fetching songs through the search input:', error);
   }
 };
 
-// > Fetch User Category (Sign Up Track Preview)
+// > Initial PC
 
 export const fetchSingularCategoryPreview = async () => {
-  // Variables
   let sort = [];
   let singularClass = [];
   let count = 0;
@@ -114,7 +109,6 @@ export const fetchSingularCategoryPreview = async () => {
       if (!sort.includes(preview[random].track.class)) {
         // Singularity conditional
         sort.push(preview[random].track.class);
-        // Track item
         let item = {
           class: preview[random].track.class,
           image: preview[random].track.images[1].url,
@@ -130,10 +124,9 @@ export const fetchSingularCategoryPreview = async () => {
   }
 };
 
-// > Fetch Lyrics & Lyrics Functions
+// > Lyrics
 
 export const fetchLyricsPlayingSong = async (id) => {
-  // Elements
   let lyrics_container$$ = document.querySelector('.lyrics-container');
   let lyrics_ctrl$$ = document.querySelector('#playing_card_ctrls [alt*="lyrics"]');
   try {
@@ -145,7 +138,6 @@ export const fetchLyricsPlayingSong = async (id) => {
     let song = data.find((item) => item.track.id === id);
     // Fetched Data
     let lyrics = song.track.lyrics;
-    //
     !lyrics ? noLyricsAvailable(lyrics_ctrl$$) : lyricsAvailable(lyrics_container$$, lyrics, lyrics_ctrl$$);
   } catch (error) {
     console.error('Error fetching lyrics from current song:', error);
@@ -163,22 +155,19 @@ const lyricsAvailable = (container, text, ctrl) => {
 };
 
 const showLyrics = (text) => {
-  // Text to Lyrics
   let span = document.createElement('span');
   let lyrics = text.replace(/empty/g, '\n').replace(/break/g, '<br>');
   span.innerHTML = lyrics;
   return span.outerHTML;
 };
 
-// > Fetch User Section (like, daily & recommendations)
+// > User Data
 
-// Likes Playlist
+// Likes
 
 export const fetchLikedSongsList = async () => {
-  // Element
   const user = getActiveUserData();
   try {
-    //
     let response = await fetch(DDBB);
     if (!response.ok) {
       throw new Error('Error accessing DDBB');
@@ -188,7 +177,6 @@ export const fetchLikedSongsList = async () => {
     if (user?.likes) {
       let songs = await data.filter((song) => user.likes.includes(song.track.id));
       songs.sort((a, b) => a.track.id - b.track.id);
-      // List
       likedSongList(songs);
     } else {
       noLikedSongsMessage$$();
@@ -201,10 +189,8 @@ export const fetchLikedSongsList = async () => {
 // Daily
 
 export const fetchDailySong = async () => {
-  // Element
   const user = getActiveUserData();
   try {
-    //
     let response = await fetch(DDBB);
     if (!response.ok) {
       throw new Error('Error accessing DDBB');
@@ -212,7 +198,6 @@ export const fetchDailySong = async () => {
     let data = await response.json();
     // Fetched Data
     let daily = data.find((song) => user.daily === song.track.id);
-    // DOM
     generateDailyTrack(daily);
   } catch (error) {
     console.error('Error fetching user liked song list:', error);
@@ -222,10 +207,8 @@ export const fetchDailySong = async () => {
 // Recommendations
 
 export const fetchRecommendationsIDS = async () => {
-  // Element
   const user = getActiveUserData();
   try {
-    //
     let response = await fetch(DDBB);
     if (!response.ok) {
       throw new Error('Error accessing DDBB');
@@ -234,9 +217,8 @@ export const fetchRecommendationsIDS = async () => {
     // Fetched Data
     let recommendations = data.filter((song) => user.category === song.track.class);
     let ids = await recommendations.map((song) => song.track.id);
-    // 5 IDS
     let array = await getFiveRecommendationsPerDay(ids);
-    // LocalStorage
+    // Set
     setRecommendations(array);
   } catch (error) {
     console.error('Error fetching user liked song list:', error);
@@ -244,10 +226,8 @@ export const fetchRecommendationsIDS = async () => {
 };
 
 export const fetchRecommendationsSongs = async () => {
-  // Element
   const user_recommendationsLS = getActiveUserData().recommendations || [];
   try {
-    //
     let response = await fetch(DDBB);
     if (!response.ok) {
       throw new Error('Error accessing DDBB');
@@ -263,7 +243,6 @@ export const fetchRecommendationsSongs = async () => {
 };
 
 const getFiveRecommendationsPerDay = async (ids) => {
-  // Shuffle the array (Fisher-Yates algorithm)
   for (let i = ids.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [ids[i], ids[j]] = [ids[j], ids[i]];

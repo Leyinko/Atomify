@@ -42,39 +42,36 @@ export const router = () => {
     path_article.innerHTML = Error404();
     errorBtnHandler();
   }
-  // Help Button Active
+  // ?
   let help_btn$$ = document.querySelectorAll('#panel_config img')[1];
   help_btn$$ ? (help_btn$$.src = config_panel_icons.help) : null;
-  // Active Anchor Navigation
+  // Active Link
   highlightActiveLinkNavigation();
 };
 
 window.addEventListener('popstate', router);
 window.addEventListener('load', keepAppRouterActive);
 
-// > Launch / Keep State
+// > State
 
 function keepAppRouterActive() {
   let getUsers = JSON.parse(localStorage.getItem('users'));
   let isOneUserActive = getUsers ? getUsers.some((user) => user.status === 'online') : null;
-  //
   if (!isOneUserActive) {
     history.pushState(null, null, '/login');
     router();
   } else {
     document.querySelector('header').style.visibility = 'visible';
     setTimeout(() => {
-      // Home
       history.pushState(null, null, '/home');
       router();
     }, 10);
   }
 }
 
-// > Visual Active Navigation Link
+// > Visual Active Link
 
 function highlightActiveLinkNavigation() {
-  // Elements
   let navigation_anchors$$ = document.querySelectorAll('#navigation_links div');
   let path = location.pathname;
   navigation_anchors$$.forEach((anchor) => {

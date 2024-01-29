@@ -18,14 +18,14 @@ export const Signup = () => {
 			<button type="submit">Sign Up</button>
 		</form>
 `;
-  // Article Inner HTML
+  // DOM
   document.querySelector('#signup').innerHTML = signup_form_template;
-  // Main Functionality
+  // Handlers
   formRegistrationFields();
   formClassSelection();
 };
 
-// > Form Checks And Requirements for Registration
+// > Form
 
 // Requirements
 let form_requirements = {
@@ -36,12 +36,9 @@ let form_requirements = {
 };
 
 const formRegistrationFields = () => {
-  // Elements
   let text_inputs$$ = document.querySelectorAll('#signup_container input');
   let submit_btn$$ = document.querySelector('#signup_container button');
-  // Input Listeners
   text_inputs$$.forEach((input) => {
-    // Prevent 'Enter' key to send form
     input.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
@@ -50,7 +47,7 @@ const formRegistrationFields = () => {
     input.addEventListener('input', checkDataForSubmit);
     input.addEventListener('blur', checkDataForSubmit);
   });
-  // Submit Button Listener
+  // Submit
   submit_btn$$.addEventListener('click', async (e) => {
     e.preventDefault();
     // New User
@@ -68,12 +65,12 @@ const formRegistrationFields = () => {
       },
       profile_picture: profile_pictures.blood,
     };
-    // Post Registration
+    // Register
     postRegistration(newUser);
   });
 };
 
-// > Validation Entries
+// > Validation
 
 function randomUserID() {
   const timestamp = new Date().getTime().toString(36);
@@ -83,9 +80,8 @@ function randomUserID() {
 }
 
 const validateUsername = () => {
-  // Input
   let username = document.querySelector('#signup_container [name="usernameField"]');
-  // Empty Field
+  // Empty
   if (username.value === '') {
     username.style.border = '';
     username.style.color = '';
@@ -100,15 +96,13 @@ const validateUsername = () => {
     username.style.border = '1px solid var(--red-valid-field)';
     form_requirements.username = false;
   }
-  //
   return username.value;
 };
 
 export const validateEmailField = () => {
-  // Input
   let email = document.querySelector('#signup_container [name="emailField"]');
   let validEmail;
-  // Empty Field
+  // Empty
   if (email.value === '') {
     email.style.border = '';
     email.style.color = '';
@@ -124,17 +118,15 @@ export const validateEmailField = () => {
     email.style.border = '1px solid var(--red-valid-field)';
     form_requirements.email = false;
   }
-  // Validate
   validEmail = email.value;
   return validEmail;
 };
 
 const validatePasswordField = () => {
-  // Inputs
   let password = document.querySelector('#signup_container [name="passwordField"]');
   let confirm = document.querySelector('#signup_container [name="confirmPasswordField"]');
   let validPassword;
-  // Empty Field
+  // Empty
   if (password.value.length === 0 || confirm.value.length === 0) {
     password.style.border = '';
     form_requirements.password = false;
@@ -155,12 +147,10 @@ const validatePasswordField = () => {
 };
 
 const validateCategorySelection = () => {
-  // Category Card
   let selected_card$$ = document.querySelector('.selected-preview');
   // Check
   if (selected_card$$) {
     form_requirements.cat = true;
-    // Validate
     let category = selected_card$$.getAttribute('cat');
     return category;
   } else {
@@ -182,13 +172,12 @@ const checkDataForSubmit = () => {
 
 export const emailAlreadyTaken = () => {
   let email = document.querySelector('#signup_container [name="emailField"]');
-  // Message
   email.value = '❌ This email is already taken.';
   email.style.border = '1px solid var(--red-valid-field)';
   email.style.color = 'var(--red-valid-field)';
   // Requirements
   form_requirements.email = false;
-  // Launch re-check
+  // Check
   checkDataForSubmit();
 };
 
@@ -202,10 +191,9 @@ const accountCreationDenied = () => {
   submit_btn$$.classList.remove('signup-confirmed');
 };
 
-// > Fetch User Category Selection
+// > Fetch Initial PC
 
 const formClassSelection = async () => {
-  // Container
   let category_container$$ = document.createElement('div');
   category_container$$.id = 'category_selection_account';
 
@@ -236,11 +224,9 @@ const formClassSelection = async () => {
     category_container$$.innerHTML += previewCard$$(item);
   });
 
-  // Audio
   let audio_preview$$ = document.createElement('audio');
   category_container$$.appendChild(audio_preview$$);
 
-  // Append ALL
   let submit_btn$$ = document.querySelector('#signup_container button');
   document.querySelector('#signup_container').insertBefore(category_container$$, submit_btn$$);
 
@@ -248,28 +234,26 @@ const formClassSelection = async () => {
   let preview_cards$$ = document.querySelectorAll('[preview]');
   preview_cards$$.forEach((card) => {
     card.addEventListener('click', (e) => {
-      // Elements
       let audio = document.querySelector('#category_selection_account audio');
       let url = e.target.getAttribute('preview');
-      // Audio
+
       audio.volume = 0;
       audio.addEventListener('canplay', fadeIn);
       audio.addEventListener('timeupdate', fadeOut);
-      // Actions
+
       audio.src = url;
       audio.play();
       e.target.classList.add('selected-preview');
-      // Selected Class Toggle
+      // Selection Toggle
       preview_cards$$.forEach((img) => {
         if (img.classList.contains('selected-preview') && img !== e.target) {
           img.classList.remove('selected-preview');
         }
       });
-      // Requirements Update Card Check
+      // Requirements
       checkDataForSubmit();
     });
   });
-
   // Information Box
   let info_btn$$ = document.querySelector('#information_class img');
   info_btn$$.addEventListener('click', () => {
@@ -277,7 +261,7 @@ const formClassSelection = async () => {
   });
 };
 
-// > Selection Class Card
+// > Preview Card
 
 const previewCard$$ = (sel) => {
   return `
