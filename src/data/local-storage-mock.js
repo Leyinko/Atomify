@@ -1,7 +1,6 @@
-import { pushStateHomeRefresh } from '../components/cards/playing-card/playing-card';
 import { wrongPassword, wrongUser } from '../pages/login/sign-in/login';
 import { emailAlreadyTaken, fadeOut } from '../pages/login/sign-up/sign-up';
-import { router } from '../router/router';
+import { pushStateHomeRefresh, router } from '../router/router';
 
 // > Register New User (/signup)
 

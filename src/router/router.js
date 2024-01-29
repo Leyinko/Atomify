@@ -90,3 +90,12 @@ function highlightActiveLinkNavigation() {
     }
   });
 }
+
+// > Home Redirect
+
+export const pushStateHomeRefresh = () => {
+  if (window.location.pathname === '/home') {
+    history.pushState(null, null, '/home');
+    router();
+  }
+};

@@ -3,47 +3,40 @@ import { checkIfLiked, popPlayingCard, responsivePlayingDistance } from '../play
 import { clickOnTouch, likedQueueIDs, popPlayer } from '../../player/player';
 import './global-card.css';
 
-// > Global Explore Card
+// > Global Cards
 
 export const global_search_card$$ = (id, img, alt) => {
-  let global_card = `
+  let global_card$$ = `
   <div id="${id}" class="global_card">
     <img id="card_cover" src="${img}" alt="${alt + '_cover_error'}">
   </div>
   `;
-  // Return
-  return global_card;
+  return global_card$$;
 };
 
-// > Global Card Handlers & Functions
+// > Handlers
 
 export const globalCardHandlers = () => {
-  // Cards
   let filtered_cards$$ = document.querySelectorAll('.global_card');
-  // Card Handler
   filtered_cards$$.forEach((card) =>
     card.addEventListener('click', async (e) => {
-      // Play btn
       let play = e.target;
       // Phone & Tablets
       clickOnTouch(e, play);
       // Desktop
       if (play && e.detail === 2) {
-        // Handle Play
         await playCard(e);
-        // Selected / Playing
         highlightGlobalPlayingCard();
       }
     })
   );
 };
 
-// > Playing Card Highlighted
+// > Highlight Playing Global Card
 
 export const highlightGlobalPlayingCard = () => {
   let filtered_cards$$ = document.querySelectorAll('.global_card');
   const audio$$ = document.querySelector('audio');
-  //
   filtered_cards$$.forEach((card) => {
     if (card.id === audio$$.getAttribute('playing_track_id')) {
       card.classList.add('global-card-active');
@@ -53,27 +46,23 @@ export const highlightGlobalPlayingCard = () => {
   });
 };
 
-// > Play
+// > Play from Global Card
 
 export const playCard = async (e) => {
-  // Elements
   const audio$$ = document.querySelector('audio');
   const playing_container$$ = document.querySelector('#playing_container');
-  // Select Parent Card Element
   let currentCard = await e.target;
-  // Play when click on Card ctrl Play
+  // Play
   await fetchTrackToPlay(currentCard.id);
   audio$$.play();
-  // Check if on Like Playlist (queue)
+  // Queue
   if (likedQueueIDs.includes(currentCard.id)) {
     audio$$.setAttribute('queue', true);
   } else {
     audio$$.removeAttribute('queue');
   }
   // Visuals
-  // Player (One time)
   playing_container$$.style.display !== 'block' ? popPlayer() : null;
-  // Playing Card
   checkIfLiked();
   popPlayingCard(playing_container$$);
   responsivePlayingDistance();

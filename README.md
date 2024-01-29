@@ -3,7 +3,6 @@
 ###### (Async RTC Project)
 
 <img src="https://res.cloudinary.com/drft9abh4/image/upload/v1706346591/Atomify-Responsive-2-BW_tnq3ew.png">
-<br>
 
 ## Features
 

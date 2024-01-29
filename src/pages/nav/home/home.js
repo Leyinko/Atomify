@@ -16,7 +16,6 @@ import {
 import {
   checkIfLiked,
   popPlayingCard,
-  pushStateHomeRefresh,
   responsivePlayingDistance,
 } from '../../../components/cards/playing-card/playing-card';
 import {
@@ -27,6 +26,7 @@ import {
   recommendations_flags,
 } from '../../../../public/assets_constants.js';
 import './home.css';
+import { pushStateHomeRefresh } from '../../../router/router.js';
 
 export const Home = () => {
   // Reset Current Article

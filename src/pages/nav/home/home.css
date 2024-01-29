@@ -424,6 +424,73 @@ ul {
   }
 }
 
+@media screen and (max-height: 800px) {
+  .current-date {
+    margin-top: 30px;
+    font-size: 9px;
+  }
+
+  article#home {
+    height: 100%;
+    overflow: scroll;
+    margin-bottom: 0px;
+    padding: 20px 0px;
+  }
+
+  article#home.shrink_result {
+    width: 95%;
+  }
+
+  #picture-container {
+    left: -110px;
+    top: 5px;
+    width: 140px;
+  }
+
+  #profile-pictures-selection {
+    top: 25px;
+    width: 210px;
+  }
+
+  #user-songs-section {
+    width: 80%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+  }
+
+  .user-information > h1 {
+    font-size: 50px;
+  }
+
+  ul {
+    margin-top: 25px;
+    width: 380px;
+    height: 280px;
+  }
+
+  .liked_song_li h4 {
+    width: 105px;
+    font-size: 11px;
+  }
+
+  .daily-track {
+    margin-top: 25px;
+    width: 190px;
+    height: 280px;
+  }
+
+  .daily-track img {
+    width: 130px;
+    margin-bottom: 40px;
+  }
+
+  #recommendations-list {
+    margin-top: -15px;
+    padding-bottom: 30px;
+  }
+}
+
 @media screen and (max-width: 601px) {
   article#home {
     overflow-x: hidden;

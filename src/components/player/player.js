@@ -58,19 +58,16 @@ const ctrls_IDs = ['ctrl_shuffle', 'ctrl_previous', 'ctrl_play', 'ctrl_next', 'c
 for (const ctrl_ID of ctrls_IDs) {
   controls[ctrl_ID + '$$'] = document.getElementById(ctrl_ID);
 }
-
 // Info DOM Manipulation
 const playing_cover$$ = document.getElementById('playing_cover');
-// DOM Ranges Controls
 const range_track$$ = document.getElementById('range-track');
 const range_volume$$ = document.getElementById('range-volume');
 // Variables
 let playerVolume = 0;
 export let playing_now_ID;
-// Likes Playlist ID
 export let likedQueueIDs = [];
 
-// NB : On-Load Essential Handlers : BN //
+// > Handlers
 
 window.addEventListener('load', playerHandlers);
 audio$$.addEventListener('timeupdate', playerTimeUpdate);
@@ -82,34 +79,31 @@ function playerHandlers() {
   atEndOfTrackHandler();
 }
 
-// > Update DOM Playing Track Info
+// > Playing Track Info
 
 export const updatePlayerInfo = (playing) => {
   const body$$ = document.querySelector('body');
   const title$$ = document.querySelector('.track-info h4');
   const artist$$ = document.querySelector('.track-info span');
   const playing_cover_zoom$$ = document.getElementById('playing_cover_zoom');
-  // Track Info Container
+  // Information
   title$$.textContent = playing.track.title;
   artist$$.textContent = playing.track.artist;
   playing_cover$$.src = playing.track.images[cover_sizes.small].url;
   playing_cover_zoom$$.src = playing.track.images[cover_sizes.big].url;
   audio$$.setAttribute('genre', playing.track.class);
-  // General Background Color /track
+  // Playing Color
   body$$.style.background = `linear-gradient(to right, ${playing.track.background_color_card}, #000000)`;
-  // User Background from Last Song
   setUserData(getActiveUserData().id, 'background', playing.track.background_color_card);
 };
 
-// > Controls Handlers & Functions
+// > Player Handlers
 
 Object.values(controls).forEach((ctrl) => {
   ctrl.addEventListener('click', (e) => {
-    // .active on click
     if (e.target.id !== 'ctrl_previous' && e.target.id !== 'ctrl_next' && e.target.id !== 'ctrl_play') {
       e.target.classList.toggle('player_active');
     }
-    // Controls
     switch (e.target.id) {
       case 'ctrl_shuffle':
         break;
@@ -134,30 +128,27 @@ Object.values(controls).forEach((ctrl) => {
   });
 });
 
-// > Controls Functions (/each Button)
+// > Functions
 
 const playRandomTrack = async () => {
-  // From Liked List
+  // Queue
   if (audio$$.getAttribute('queue')) {
     let randomTrackFromLiked = getRandomTrackID(likedQueueIDs.length - 1);
     await playMusicQueue(randomTrackFromLiked);
     return;
   }
-  // From General Playlist [100]
+  // Explore
   let randomTrack = getRandomTrackID(maxLength);
   await fetchTrackToPlay(randomTrack);
   audio$$.play();
-  // Tag as NOT from queue
   audio$$.removeAttribute('queue');
 };
 
 const playPrevious = async () => {
-  // Liked Queue
+  // Queue
   if (audio$$.getAttribute('queue')) {
-    // Current
     let current = audio$$.getAttribute('playing_track_id');
     let indexFromQueue = getIndexOfTrackInLikeQueue(current);
-    // Conditions
     if (audio$$.currentTime <= 2 && indexFromQueue === 0) {
       audio$$.currentTime = 0;
       return;
@@ -166,25 +157,23 @@ const playPrevious = async () => {
       return;
     }
   }
-  // If First of IDS
+  // [0]
   if (audio$$.getAttribute('playing_track_id') == '1' && audio$$.currentTime <= 2) {
-    // Play
-    await fetchTrackToPlay(String(getRandomTrackID(100)));
+    await fetchTrackToPlay(String(getRandomTrackID(maxLength)));
     audio$$.play();
     return;
   } else if (audio$$.getAttribute('playing_track_id') == '1') {
-    // Restart current song
     audio$$.currentTime = 0;
     audio$$.play();
     return;
   }
-  // Previous song
+  // Previous
   if (audio$$.currentTime <= 2) {
     await fetchTrackToPlay(String(playing_now_ID - 1));
     audio$$.play();
     return;
   }
-  // Restart current song
+  // Restart
   audio$$.currentTime = 0;
   audio$$.play();
 };
@@ -201,9 +190,8 @@ const pauseTrack = () => {
 };
 
 const playNext = async () => {
-  // Liked Queue
+  // Queue
   if (audio$$.getAttribute('queue')) {
-    // Current
     let current = audio$$.getAttribute('playing_track_id');
     let indexFromQueue = getIndexOfTrackInLikeQueue(current);
     // Shuffle On
@@ -211,12 +199,11 @@ const playNext = async () => {
       playRandomTrack();
       return;
     }
-    // Conditions of last of list
+    // [-1]
     if (indexFromQueue === likedQueueIDs.length - 1) {
-      // Tag as NOT from queue
       audio$$.removeAttribute('queue');
       // Play
-      await fetchTrackToPlay(String(getRandomTrackID(100)));
+      await fetchTrackToPlay(String(getRandomTrackID(maxLength)));
       audio$$.play();
       return;
     } else {
@@ -224,14 +211,13 @@ const playNext = async () => {
       return;
     }
   }
-  // General
-  // Next Shuffle if activated
+  // Explore
   if (controls.ctrl_shuffle$$.className.includes('player_active')) {
     playRandomTrack();
     return;
   }
   // Next Track
-  if (audio$$.getAttribute('playing_track_id') == '100') {
+  if (audio$$.getAttribute('playing_track_id') == String(maxLength)) {
     let randomTrack = getRandomTrackID(maxLength);
     await fetchTrackToPlay(randomTrack);
     audio$$.play();
@@ -264,7 +250,7 @@ const thumbUnmuteEvent = () => {
   unmuteEvent.stopPropagation();
 };
 
-// > Timestamps & Playing Update
+// > Timestamps Listener ⭐
 
 function playerTimeUpdate() {
   const current_time$$ = document.querySelector('.time-range-container span:first-of-type');
@@ -281,45 +267,38 @@ function playerTimeUpdate() {
     const remainingSeconds = Math.floor(remaining % 60);
     remaining_time$$.textContent = `${remainingMinutes}:${String(remainingSeconds).padStart(2, '0')}`;
   }
-  // Visual Play/Pause
+  // Play/Pause
   playPauseIconUpdate();
-  // ID Playing
+  // Current ID
   playing_now_ID = audio$$.getAttribute('playing_track_id');
-  // Category Timestamps Update
+  // USER Predominant Category (PC)
   countGenreSeconds(audio$$.getAttribute('genre'));
-  // Update Global Like Queue IDS
+  // Global Likes ID
   getLikedQueueSongs();
 }
 
-// > At End Handlers
+// > Track "ended" Handlers
 
 function atEndOfTrackHandler() {
-  // Handler
   audio$$.addEventListener('ended', () => {
-    // Checks
     let isShuffle = controls.ctrl_shuffle$$.className.includes('player_active');
     let isOnRepeat = controls.ctrl_repeat$$.className.includes('player_active');
     let isFromQueue = audio$$.getAttribute('queue');
-    // Conditions
+    //
     if (!isShuffle && !isOnRepeat) {
       playNext();
-      // Tag as NOT from queue
       audio$$.removeAttribute('queue');
     }
     if (isShuffle) {
       playRandomTrack();
     }
     if (isFromQueue) {
-      // Get audio Elements
       let id = audio$$.getAttribute('playing_track_id');
       let targetIndex = getIndexOfTrackInLikeQueue(id + 1);
-      // Condition
       if (id === likedQueueIDs[likedQueueIDs.length - 1]) {
         audio$$.removeAttribute('queue');
       } else {
-        // Play Track
         playMusicQueue(targetIndex);
-        // Tag as Queue
         audio$$.setAttribute('queue', true);
       }
     }
@@ -332,7 +311,6 @@ const rangesHandlers = () => {
   range_track$$.addEventListener('input', () => {
     audio$$.currentTime = parseFloat(range_track$$.value);
   });
-
   range_volume$$.addEventListener('input', () => {
     audio$$.volume = parseFloat(range_volume$$.value);
     !audio$$.volume
@@ -348,7 +326,7 @@ function rangesPlayer() {
   //
   range_track$$.value = audio$$.currentTime;
   range_track$$.max = audio$$.duration;
-  // Track % Color
+  // Visual
   const songProgressPercent = (audio$$.currentTime / audio$$.duration) * 100;
   range_track$$.style.background = `linear-gradient(to right, #1db954 0%, #1db954 ${songProgressPercent}%, #646566 ${songProgressPercent}%, #646566 100%)`;
   // Volume
@@ -358,37 +336,34 @@ function rangesPlayer() {
   range_volume$$.value = audio$$.volume;
   range_volume$$.max = 1;
   range_volume$$.min = 0;
-  // Volume % Color
+  // Visual
   const volumePercent = (range_volume$$.value / range_volume$$.max) * 100;
   range_volume$$.style.background = `linear-gradient(to right, #1db954 0%, #1db954 ${volumePercent}%, #646566 ${volumePercent}%, #646566 100%)`;
-  // Animation smoothness
+  // Animation
   requestAnimationFrame(rangesPlayer);
 }
 
-// > Zoom Cover Handler
+// > Zoom Cover Playing Track
 
 function handleCoverPlayer() {
   const opening_cover_container$$ = document.getElementById('opening-cover-container');
   const open_playing_cover$$ = document.getElementById('develop-cover');
   const close_playing_cover$$ = document.getElementById('develop-cover-close');
   const track_container$$ = document.querySelector('.track-info');
-  //
+  // Open
   open_playing_cover$$.addEventListener('click', () => {
-    // Open Cover Zoom
     opening_cover_container$$.style.display = 'fixed';
     opening_cover_container$$.style.left = '80px';
-    // Track Slide
     track_container$$.style.transform = 'translateX(-85px)';
   });
+  // Close
   close_playing_cover$$.addEventListener('click', () => {
-    // Close Cover Zoom
     opening_cover_container$$.style.left = '-1000px';
-    // Track Slide
     track_container$$.style.transform = '';
   });
 }
 
-// > Visibility Player & Pause/Play Icon
+// > Player Pop & Pause/Play
 
 export const popPlayer = () => {
   FOOTER_ELEMENT$$.style.display = 'flex';
@@ -397,11 +372,9 @@ export const popPlayer = () => {
 };
 
 const playPauseIconUpdate = () => {
-  // Player Play / Pause Btn
   let play_icon$$ = document.querySelector('#ctrl_play img');
   !audio$$.paused ? (play_icon$$.src = player_icons.pause) : (play_icon$$.src = player_icons.play);
   let home_play_icon$$ = document.querySelector('#play_liked_playlist');
-  // Like Playlist Play / Pause Btn
   if (home_play_icon$$) {
     if (audio$$.getAttribute('queue') && !audio$$.paused) {
       home_play_icon$$.src = player_icons.pause;
@@ -413,11 +386,11 @@ const playPauseIconUpdate = () => {
   }
 };
 
-// > Get Random Track
+// > General Random Function for MAX
 
 export const getRandomTrackID = (max) => String(Math.floor(Math.random() * `${max}`) + 1);
 
-// > Check if Played from Like List / Keep track of Liked Queue Songs
+// > Global Queue IDs Function
 
 export function getLikedQueueSongs() {
   likedQueueIDs = [];
@@ -426,13 +399,11 @@ export function getLikedQueueSongs() {
   likedQueueIDs = ascendingOrderLikeTracks(likedQueueIDs);
 }
 
-// > Touch Handler to Play for all App
+// > Responsive Play Handler
 
 export const clickOnTouch = async (e, play = e.target) => {
   if (window.innerWidth < 1280 && play) {
-    // Handle Play
     await playCard(e);
-    // Selected / Playing
     highlightGlobalPlayingCard();
   }
 };

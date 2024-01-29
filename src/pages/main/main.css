@@ -77,7 +77,28 @@ main {
 
   main {
     width: 100%;
-    /* padding: 0px; */
+    padding: 0px 10px;
+    overflow: hidden;
+  }
+
+  #playing_container {
+    max-width: 230px;
+    height: 100%;
+    max-height: 330px;
+  }
+
+  #playing_container.show-playing-card {
+    margin: 20px;
+  }
+}
+
+@media screen and (max-height: 800px) {
+  .loading_logo {
+    max-width: 20%;
+  }
+
+  main {
+    width: 100%;
     padding: 0px 10px;
     overflow: hidden;
   }

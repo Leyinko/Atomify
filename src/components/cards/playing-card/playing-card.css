@@ -116,6 +116,17 @@
   }
 }
 
+@media screen and (max-height: 800px) {
+  .playing_card_info h4 {
+    font-size: 11px;
+  }
+
+  .lyrics-container {
+    padding: 20px 30px;
+    height: 78%;
+  }
+}
+
 @media screen and (max-width: 601px) {
   .playing_card {
     gap: 0.5rem;
