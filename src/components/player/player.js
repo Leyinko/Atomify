@@ -366,9 +366,14 @@ function handleCoverPlayer() {
 // > Player Pop & Pause/Play
 
 export const popPlayer = () => {
-  FOOTER_ELEMENT$$.style.display = 'flex';
-  FOOTER_ELEMENT$$.style.transform = 'none';
-  MAIN_ELEMENT$$.style.height = 'calc(100svh - 200px)';
+  // FOOTER_ELEMENT$$.style.display = 'flex';
+  // FOOTER_ELEMENT$$.style.transform = 'none';
+  // MAIN_ELEMENT$$.style.height = 'calc(100svh - 200px)';
+  let track_info$$ = document.querySelector('.track-info');
+  let reproduction_box$$ = document.querySelector('.reproduction');
+  track_info$$.style.visibility = 'visible';
+  track_info$$.style.opacity = '1';
+  reproduction_box$$.style.pointerEvents = 'all';
 };
 
 const playPauseIconUpdate = () => {

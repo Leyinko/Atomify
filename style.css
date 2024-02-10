@@ -43,3 +43,14 @@ body {
   height: 0px;
   background-color: transparent;
 }
+
+@keyframes appearance {
+  80% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

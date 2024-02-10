@@ -178,8 +178,9 @@ header {
 
 #modal-config {
   position: absolute;
-  top: 40px;
-  width: 150px;
+  top: 30px;
+  right: 40px;
+  width: 100px;
   background-color: var(--black-card);
   border-radius: 5px;
   visibility: hidden;

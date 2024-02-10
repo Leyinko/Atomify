@@ -8,6 +8,9 @@ article#home {
   justify-content: center;
   transition: width 0.8s;
   user-select: none;
+  transform: scale(0.6);
+  opacity: 0;
+  animation: appearance 1s ease-in-out forwards;
 }
 
 article#home.shrink_result {
@@ -46,19 +49,19 @@ article#home.shrink_result {
   width: 100%;
   object-fit: cover;
   filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, 0.301));
-  transition: filter 0.1s ease-in-out;
+  transition: filter 0.5s ease-in-out;
 }
 
 #picture-container:hover {
+  cursor: pointer;
   background: url('https://res.cloudinary.com/drft9abh4/image/upload/v1704820760/change-svgrepo-com_nhos8n.svg')
     center/25% no-repeat;
 }
 
 #picture-container:hover .profile-picture {
-  /* opacity: 0.5; */
   z-index: -333333;
   filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, 0.301)) brightness(0.3);
-  transition: all 0.1s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 #profile-pictures-selection {
@@ -167,10 +170,11 @@ article#home.shrink_result {
   border-radius: 50%;
   background-color: var(--green-spotify);
   box-shadow: 2px 1px 2px 0px rgba(0, 0, 0, 0.589);
+  opacity: 0.8;
 }
 
 #play_liked_playlist:hover {
-  transform: scale(1.05);
+  /* transform: scale(1.05); */
   box-shadow: 2px 1px 6px 0px rgba(0, 0, 0, 0.589);
   cursor: pointer;
 }

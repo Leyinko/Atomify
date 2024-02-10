@@ -25,7 +25,7 @@ export const playing_card$$ = (id, img, alt, title, artist, href, bg_color) => {
   `;
   // DOM
   playing_container$$.innerHTML = playing_card;
-  playing_container$$.style.backgroundColor = `${bg_color}D9`;
+  playing_container$$.style.backgroundColor = `${bg_color}99`;
   // Handlers
   playingCardHandlers();
 };

@@ -63,7 +63,8 @@ const formRegistrationFields = () => {
         G: 0,
         R: 0,
       },
-      profile_picture: profile_pictures.blood,
+      profile_picture: profile_pictures.pink,
+      background: '#DEA2BB',
     };
     // Register
     postRegistration(newUser);

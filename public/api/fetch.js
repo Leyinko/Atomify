@@ -34,6 +34,7 @@ export const fetchTrackToPlay = async (num) => {
     if (num > maxLength) {
       song = data[0];
     }
+
     // Pause
     if (!audio$$.paused) {
       audio$$.pause();

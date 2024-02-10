@@ -2,14 +2,13 @@ main {
   position: relative;
   margin: 0 auto;
   width: 85%;
-  height: 90svh;
+  height: calc(100svh - 200px);
   padding: 0px 45px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 6.25rem;
   transition: height 0.2s ease-in-out;
-  /* overflow: hidden; */
 }
 
 #playing_container {

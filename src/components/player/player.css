@@ -8,8 +8,8 @@ footer {
   background-color: black;
   user-select: none;
   z-index: 1111111;
-  transform: translateY(200px);
-  display: none;
+  /* transform: translateY(200px); */
+  display: flex;
 }
 
 .track-info {
@@ -20,6 +20,8 @@ footer {
   align-items: center;
   gap: 1.3rem;
   transition: all 0.2s ease-in-out;
+  visibility: hidden;
+  opacity: 0;
 }
 
 #playing_cover {
@@ -113,6 +115,7 @@ footer {
   align-items: center;
   flex-direction: row;
   gap: 1.3rem;
+  pointer-events: none;
 }
 
 .reproduction img {

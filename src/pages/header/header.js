@@ -147,8 +147,9 @@ const panelFunctions = {
       modal_container$$.id = 'modal-config';
 
       modal_container$$.innerHTML = `
-         <h3 role="button" id="log-out">Log Out</h3>
-         <h3 role="button" id="reset-btn">Reset PC Account</h3>
+      <h3 role="button" id="github">GitHub</h3>
+      <h3 role="button" id="log-out">Log Out</h3>
+      <h3 role="button" id="reset-btn">Reset PC Account</h3>
       `;
 
       panel_config_container$$.appendChild(modal_container$$);
@@ -156,13 +157,18 @@ const panelFunctions = {
       modal_container$$.classList.add('selection-active');
 
       let modal_selection$$ = document.querySelectorAll('#modal-config h3');
-      // Log Out
+
+      // GitHub
       modal_selection$$[0].addEventListener('click', () => {
+        window.open('https://github.com/Leyinko', '_blank');
+      });
+      // Log Out
+      modal_selection$$[1].addEventListener('click', () => {
         modal_container$$.classList.remove('selection-active');
         logOutActiveUser();
       });
       // Reset User Recommendations
-      modal_selection$$[1].addEventListener('click', () => {
+      modal_selection$$[2].addEventListener('click', () => {
         resetUserRecommendations();
       });
     } else {
