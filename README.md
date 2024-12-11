@@ -1,52 +1,42 @@
-# Atomify - Playlist Explorer
+# Atomify
 
-###### (Async RTC Project)
+An asynchronous real-time communication project for personalized music exploration.
 
-<img src="https://res.cloudinary.com/drft9abh4/image/upload/v1706346591/Atomify-Responsive-2-BW_tnq3ew.png">
+![Atomify Responsive Design](https://res.cloudinary.com/drft9abh4/image/upload/v1706346591/Atomify-Responsive-2-BW_tnq3ew.png)
+
+## Table of Contents
+
+1. [Features](#features)
+2. [Getting Started](#getting-started)
+3. [Screenshots](#screenshots)
 
 ## Features
 
-### Account Creation and Data Storage
+- **Local Account Creation**: Securely store profile preferences in Local Storage.
+- **Adaptive Music Algorithm**: Personalized daily recommendations based on your listening habits.
+- **Profile Customization**: Set profile picture, favorite songs, and track your music stats.
+- **Curated Playlist**: Explore 100 hand-picked tracks to expand your musical horizons.
+- **Interactive Player**: Integrated music player with a floating card for lyrics, likes, and Spotify integration.
 
-Create a personalized account locally, ensuring the secure storage of profile preferences, allowing for convenient access and maintenance as long as the data is retained in Local Storage.
+> 💡 **Tip**: Check the Help section on the website for detailed app functionality.
 
-### Music Genre Algorithm
+## Getting Started
 
-Choose a track that represents a genre to tailor your initial daily recommendations. The algorithm adapts to your preferences, offering a customized and evolving music experience :
+1. Visit [https://atomify.netlify.app/login](https://atomify.netlify.app/login)
+2. Create your account
+3. Choose your initial genre preference
+4. Start discovering and enjoying music tailored to your taste!
 
-**Recommendations will be influenced by the genre you listen to the most!**
+---
 
-### Profile and Stats
+## Screenshots
 
-Change profile picture, set favorite songs, view Daily and personalized recommendations Tracks, and monitor your PR and PC.
+![User Interface](https://res.cloudinary.com/drft9abh4/image/upload/v1706204738/2024-01-17_11h13_33_dweto3.png)
 
-**Higher PR rates will indicate more popular and mainstream choices, while lower rates will showcase a more unique and distinctive taste.**
+![Music Player](https://res.cloudinary.com/drft9abh4/image/upload/v1706204489/2024-01-25_18h33_55_ktjwnc.png)
 
-### Search & Explore
+![Profile View](https://res.cloudinary.com/drft9abh4/image/upload/v1706204490/2024-01-25_18h37_34_ssutt1.png)
 
-Explore a curated list of 100 tracks, selecting songs that resonate with your evolving music taste.
+![Playlist Explorer](https://res.cloudinary.com/drft9abh4/image/upload/v1706204489/2024-01-25_18h35_36_docprd.png)
 
-### Player and Playing Floating Card
-
-Use the integrated player to play, shuffle, and repeat songs. The floating Playing Card allows you to sing along, like the song, or redirect to Spotify to add it to your Spotify playlist.
-
-###### Check the Help section on the website for more information about the App functionality.
-
-<br>
-
-### Start Exploring -> [https://atomify.netlify.app/login](https://atomify.netlify.app/login)
-
-<br>
-
-# Screnshots
-
-<img width='80%' src="https://res.cloudinary.com/drft9abh4/image/upload/v1706204738/2024-01-17_11h13_33_dweto3.png">
-<br>
-<img width='80%' src="https://res.cloudinary.com/drft9abh4/image/upload/v1706204489/2024-01-25_18h33_55_ktjwnc.png">
-<br>
-<img width='80%' src="https://res.cloudinary.com/drft9abh4/image/upload/v1706204490/2024-01-25_18h37_34_ssutt1.png">
-<br>
-<img width='80%' src="https://res.cloudinary.com/drft9abh4/image/upload/v1706204489/2024-01-25_18h35_36_docprd.png">
-<br>
-<img width='80%' src="https://res.cloudinary.com/drft9abh4/image/upload/v1706204489/2024-01-25_18h37_12_goe0ve.png">
-<br>
+![Song Details](https://res.cloudinary.com/drft9abh4/image/upload/v1706204489/2024-01-25_18h37_12_goe0ve.png)
